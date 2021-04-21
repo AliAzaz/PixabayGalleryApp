@@ -4,8 +4,7 @@
 
 ✨ Image gallery app consumed Pixabay API ✨
 
-<img alt="Pic-1" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/Home.png" width="220" height="460"/> &nbsp; <img alt="Pic-2" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/Search.png" width="220" height="460"/> &nbsp; <img alt="Pic-3" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/DetailView.png" width="220" height="460"/> &nbsp; <img alt="Pic-4" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/LoadingMore.png" width="220" height="460"/>
-
+<img alt="Pic-1" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/Home.png" width="220" height="460"/> &nbsp; <img alt="Pic-2" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/Search.png" width="220" height="460"/> &nbsp; <img alt="Pic-3" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/DetailView.png" width="220" height="460"/> <br/> <img alt="Pic-4" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/LoadingMore.png" width="220" height="460"/> &nbsp; <img alt="Pic-5" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/InternetNA.png" width="220" height="460"/>
 
 ## Features
 
