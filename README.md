@@ -4,7 +4,8 @@
 
 ✨ Image gallery app consumed Pixabay API ✨
 
-<img alt="Pic-1" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/Home.png" width="230" height="440"/> &nbsp; <img alt="Pic-2" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/Search.png" width="230" height="440"/> &nbsp; <img alt="Pic-3" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/DetailView.png" width="230" height="440"/> &nbsp; <img alt="Pic-4" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/LoadingMore.png" width="230" height="440"/>
+<img alt="Pic-1" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/Home.png" width="220" height="460"/> &nbsp; <img alt="Pic-2" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/Search.png" width="220" height="460"/> &nbsp; <img alt="Pic-3" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/DetailView.png" width="220" height="460"/> &nbsp; <img alt="Pic-4" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/LoadingMore.png" width="220" height="460"/>
+
 
 ## Features
 
