@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/imageListFragment">
+
+    <fragment
+        android:id="@+id/imageListFragment"
+        android:name="com.example.pixabaygalleryapp.ui.fragment.ImageListFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_image_list">
+        <action
+            android:id="@+id/action_imageListFragment_to_imageDetailFragment"
+            app:destination="@id/imageDetailFragment"
+            app:exitAnim="@anim/fragment_fade_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageDetailFragment"
+        android:name="com.example.pixabaygalleryapp.ui.fragment.ImageDetailFragment"
+        android:label="Photo Detail"
+        tools:layout="@layout/fragment_image_detail">
+<!--        <action-->
+<!--            android:id="@+id/action_imageDetailFragment_to_imageListFragment"-->
+<!--            app:destination="@id/imageListFragment"-->
+<!--            app:exitAnim="@anim/fragment_close_exit"-->
+<!--            app:popUpTo="@id/imageListFragment"-->
+<!--            app:popUpToInclusive="true" />-->
+    </fragment>
+</navigation>
