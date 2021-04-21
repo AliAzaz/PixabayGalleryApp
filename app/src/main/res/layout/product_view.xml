@@ -15,12 +15,12 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/parentLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_120sdp"
+        android:layout_height="@dimen/_140sdp"
         android:layout_marginStart="@dimen/_3sdp"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginEnd="@dimen/_3sdp"
         android:elevation="@dimen/_1sdp"
-        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
         app:cardElevation="@dimen/_1sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
