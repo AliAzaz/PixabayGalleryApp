@@ -12,14 +12,12 @@ interface AuthApi {
     @GET(ApiRoutes.GET_IMAGES_DATA)
     suspend fun getImagesData(
         @Query("page") page: Int = 1,
-        @Query("per_page") perPagePhotos: Int = 26,
         @Query("category") category: String = "latest"
     ): ImagesResult
 
     @GET(ApiRoutes.GET_IMAGES_DATA)
     suspend fun getSearchImageData(
         @Query("page") page: Int = 1,
-        @Query("per_page") perPagePhotos: Int = 26,
         @Query("q") category: String
     ): ImagesResult
 

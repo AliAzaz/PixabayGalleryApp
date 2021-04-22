@@ -4,10 +4,12 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.pixabaygalleryapp.MainCoroutinesRule
 import com.example.pixabaygalleryapp.MockTestUtil
+import com.example.pixabaygalleryapp.base.repository.GeneralRepository
 import com.example.pixabaygalleryapp.base.repository.ResponseStatusCallbacks
 import com.example.pixabaygalleryapp.base.viewmodel.usecases.ImageSearchUseCase
 import com.example.pixabaygalleryapp.base.viewmodel.usecases.ImageUseCase
 import com.example.pixabaygalleryapp.model.FetchDataModel
+import com.example.pixabaygalleryapp.model.ImagesInfo
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -76,7 +78,7 @@ class ImageViewModelTest {
             mockk<Observer<ResponseStatusCallbacks<FetchDataModel>>>(relaxed = true)
 
         // When
-        coEvery { imageUseCase.invoke() }.returns(flowOf(MockTestUtil.createZeroImage()))
+        coEvery { imageUseCase.invoke(any(),any()) }.returns(flowOf(MockTestUtil.createZeroImage()))
 
         // Invoke
         viewModel = ImageViewModel(imageUseCase, imageSearchUseCase)
@@ -85,7 +87,7 @@ class ImageViewModelTest {
         // Then
         coVerify(exactly = 1) { imageUseCase.invoke() }
         verify { imagesListObserver.onChanged(match { it.data != null }) }
-        verify { imagesListObserver.onChanged(match { it.data?.imagesInfo?.size == 0 }) }
+        verify { imagesListObserver.onChanged(match { it.data?.imagesInfo?.isNullOrEmpty() ?: true }) }
 
     }
 

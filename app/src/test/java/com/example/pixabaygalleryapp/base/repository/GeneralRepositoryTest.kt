@@ -49,7 +49,7 @@ class GeneralRepositoryTest {
         repository = GeneralRepository(authApi)
 
         // When
-        coEvery { authApi.getImagesData(any(), any(), any()) }.returns(MockTestUtil.createImages())
+        coEvery { authApi.getImagesData(any(), any()) }.returns(MockTestUtil.createImages())
 
         // Invoke
         val imagesFlow = repository.getAllImages(1, "")
@@ -71,7 +71,7 @@ class GeneralRepositoryTest {
         val imagesList = MockTestUtil.createZeroImage()
 
         // When
-        coEvery { authApi.getImagesData(any(), any(), any()) }.returns(imagesList)
+        coEvery { authApi.getImagesData(any(), any()) }.returns(imagesList)
 
         // Invoke
         val imagesFlow = repository.getAllImages(1, "")
@@ -96,7 +96,7 @@ class GeneralRepositoryTest {
 
         //When
         coEvery {
-            authApi.getSearchImageData(any(), any(), any())
+            authApi.getSearchImageData(any(), any())
         }.returns(searchImage)
 
         //Invoke

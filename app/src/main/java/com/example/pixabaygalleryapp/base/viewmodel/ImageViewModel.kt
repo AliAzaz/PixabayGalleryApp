@@ -54,8 +54,7 @@ class ImageViewModel @Inject constructor(
         )
         viewModelScope.launch {
             try {
-                delay(500)
-                imageUseCase(page = pagination).collect { dataset ->
+                imageUseCase.invoke(page = pagination).collect { dataset ->
                     dataset.imagesInfo.let {
                         if (it.isNotEmpty()) {
                             if (pagination == 1) {
