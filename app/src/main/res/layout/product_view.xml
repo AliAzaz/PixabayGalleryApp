@@ -8,7 +8,7 @@
         <import type="android.view.View" />
 
         <variable
-            name="imageItem"
+            name="item"
             type="com.example.pixabaygalleryapp.model.ImagesInfo" />
     </data>
 
@@ -39,7 +39,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:loadGroupImage="@{imageItem.webformatURL}" />
+                app:loadGroupImage="@{item.webformatURL}" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/name"
@@ -54,7 +54,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:loadShortString="@{imageItem.user}"
+                app:loadShortString="@{item.user}"
                 tools:ignore="HardcodedText"
                 tools:text="Glasses" />
 

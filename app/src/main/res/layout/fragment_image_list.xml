@@ -8,10 +8,6 @@
 
         <import type="android.view.View" />
 
-        <variable
-            name="callback"
-            type="com.example.pixabaygalleryapp.ui.fragment.ImageListFragment" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

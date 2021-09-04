@@ -1,15 +1,15 @@
 package com.example.pixabaygalleryapp.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.NestedScrollView
-import androidx.databinding.library.baseAdapters.BR
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pixabaygalleryapp.R
-import com.example.pixabaygalleryapp.adapters.ImageListAdapter
+import com.example.pixabaygalleryapp.adapters.GenericListAdapter
 import com.example.pixabaygalleryapp.base.FragmentBase
 import com.example.pixabaygalleryapp.base.repository.ResponseStatus
 import com.example.pixabaygalleryapp.base.viewmodel.ImageViewModel
@@ -26,9 +26,9 @@ import kotlin.collections.ArrayList
 
 class ImageListFragment : FragmentBase() {
 
-    lateinit var viewModel: ImageViewModel
-    lateinit var adapter: ImageListAdapter
-    lateinit var bi: FragmentImageListBinding
+    private lateinit var viewModel: ImageViewModel
+    private lateinit var adapter: GenericListAdapter<ImagesInfo>
+    private lateinit var bi: FragmentImageListBinding
     var actionBarHeight = 0
 
     override fun onCreateView(
@@ -38,8 +38,13 @@ class ImageListFragment : FragmentBase() {
         /*
         * Initializing databinding
         * */
-        bi = FragmentImageListBinding.inflate(inflater, container, false)
-        bi.setVariable(BR.callback, this)
+        return FragmentImageListBinding.inflate(inflater, container, false).apply {
+            bi = this
+        }.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         /*
         * Get actionbar height for use in translation
@@ -63,11 +68,6 @@ class ImageListFragment : FragmentBase() {
         bi.fldGrpSearchPhotos.translationY = actionBarHeight.toFloat()
         bi.nestedScrollView.translationY = actionBarHeight.toFloat() / 2
 
-        return bi.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         /*
         * Obtaining ViewModel
         * */
@@ -164,13 +164,12 @@ class ImageListFragment : FragmentBase() {
     /*
     * Initialize recyclerView with onClickListener
     * */
+    @SuppressLint("ResourceType")
     private fun callingRecyclerView() {
-        adapter = ImageListAdapter(object : ImageListAdapter.OnItemClickListener {
-            override fun onItemClick(item: ImagesInfo, position: Int) {
-                viewModel.setSelectedProduct(item)
-                findNavController().navigate(ImageListFragmentDirections.actionImageListFragmentToImageDetailFragment())
-            }
-        })
+        adapter = GenericListAdapter(R.layout.product_view){ item, position ->
+            viewModel.setSelectedProduct(item)
+            findNavController().navigate(ImageListFragmentDirections.actionImageListFragmentToImageDetailFragment())
+        }
         adapter.stateRestorationPolicy =
             RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         bi.productList.adapter = adapter

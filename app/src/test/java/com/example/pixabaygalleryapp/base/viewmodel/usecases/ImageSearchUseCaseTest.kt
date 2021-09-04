@@ -37,7 +37,7 @@ class ImageSearchUseCaseTest {
         val mockImages = MockTestUtil.createImages()
 
         //When
-        coEvery { repository.getSearchImages(1,"") }
+        coEvery { repository.getSearchImages(any(),any()) }
             .returns(flowOf(mockImages))
 
         //Invoke

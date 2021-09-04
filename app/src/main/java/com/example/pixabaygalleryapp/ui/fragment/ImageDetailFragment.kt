@@ -37,12 +37,13 @@ class ImageDetailFragment : FragmentBase() {
         /*
         * Initializing databinding
         * */
-        bi = FragmentImageDetailBinding.inflate(inflater, container, false)
-        return bi.root
+        return FragmentImageDetailBinding.inflate(inflater, container, false).apply {
+            bi = this
+        }.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         /*
         * Obtaining ViewModel

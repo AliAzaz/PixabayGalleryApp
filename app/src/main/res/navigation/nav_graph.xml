@@ -12,8 +12,7 @@
         tools:layout="@layout/fragment_image_list">
         <action
             android:id="@+id/action_imageListFragment_to_imageDetailFragment"
-            app:destination="@id/imageDetailFragment"
-            app:exitAnim="@anim/fragment_fade_exit" />
+            app:destination="@id/imageDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/imageDetailFragment"
