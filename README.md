@@ -4,20 +4,34 @@
 
 ✨ Image gallery app consumed Pixabay API ✨
 
-<img alt="Pic-1" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/Home.png" width="220" height="460"/> &nbsp; <img alt="Pic-2" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/Search.png" width="220" height="460"/> &nbsp; <img alt="Pic-3" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/DetailView.png" width="220" height="460"/> <br/> <img alt="Pic-4" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/LoadingMore.png" width="220" height="460"/> &nbsp; <img alt="Pic-5" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/InternetNA.png" width="220" height="460"/>
+<img alt="Pic-1" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/Pic1.png" width="220" height="460"/> &nbsp; <img alt="Pic-2" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/Pic2.png" width="220" height="460"/> &nbsp; <img alt="Pic-3" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/Pic3.png" width="220" height="460"/> <br/> <img alt="Pic-4" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/Pic4.png" width="220" height="460"/> &nbsp; <img alt="Pic-5" src="https://github.com/AliAzaz/PixabayGalleryApp/blob/master/images/Pic5.png" width="220" height="460"/>
 
 ## Features
 
 - Search photos by querying it
 - Populate latest photos
-- Gallery support pagination 
+- Gallery support pagination
+- Dark/Light Mode
 
 
 ## Architecture
 
  - Using Modern Android Development practices
  - Implemented MVVM-Clean Architecture using Usecase, Repository pattern for data
- - Unit tests for several classes.
+ - MockK tests for several classes
+
+
+## How it build
+
+- Kotlin
+- Flow
+- Retrofit
+- Coroutine
+- MVVM
+- Dagger2
+- Binding Adapters
+- Material Components
+- MockK Test
 
 
 ## CONNECT👍
