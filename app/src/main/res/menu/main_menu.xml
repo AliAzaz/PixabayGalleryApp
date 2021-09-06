@@ -4,8 +4,14 @@
     <item
         android:id="@+id/search_menu"
         android:icon="@drawable/ic_search"
-        android:title="Search"
+        android:title="@string/search"
         android:visible="false"
-        app:iconTint="@color/grayDark"
+        app:iconTint="@color/icon_background"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/night_menu"
+        android:icon="@drawable/ic_baseline_nights_stay"
+        android:title="@string/night_view"
+        app:iconTint="@color/icon_background"
         app:showAsAction="always" />
 </menu>

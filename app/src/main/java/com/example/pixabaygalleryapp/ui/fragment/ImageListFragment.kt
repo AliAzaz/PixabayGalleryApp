@@ -6,6 +6,7 @@ import android.util.TypedValue
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.NestedScrollView
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pixabaygalleryapp.R
@@ -20,8 +21,10 @@ import com.example.pixabaygalleryapp.utils.hideKeyboard
 import com.example.pixabaygalleryapp.utils.obtainViewModel
 import com.example.pixabaygalleryapp.utils.showSnackBar
 import com.kennyc.view.MultiStateView
+import kotlinx.coroutines.*
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.coroutines.CoroutineContext
 
 
 class ImageListFragment : FragmentBase() {
@@ -177,7 +180,7 @@ class ImageListFragment : FragmentBase() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(true)
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {

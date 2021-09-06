@@ -10,7 +10,7 @@
     <color name="gray">#FA7F7F7F</color>
     <color name="whiteOverlay">#7fffffff</color>
     <color name="grayDark">#5e5e5e</color>
-    <color name="search_background">#FFFFFFFF</color>
-    <color name="main_background">#fafafa</color>
-    <color name="icon_background">#232323</color>
+    <color name="search_background">#5e5e5e</color>
+    <color name="main_background">#232323</color>
+    <color name="icon_background">#fafafa</color>
 </resources>
