@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/PersonalWork/AndroidStudioProjects_Ali/PixabayGalleryApp/app/src/main/res/layout/fragment_image_detail.xml" value="0.14628623188405798" />
         <entry key="..\:/PersonalWork/AndroidStudioProjects_Ali/PixabayGalleryApp/app/src/main/res/layout/fragment_image_list.xml" value="0.259375" />
+        <entry key="..\:/PersonalWork/AndroidStudioProjects_Ali/PixabayGalleryApp/app/src/main/res/layout/loading_view.xml" value="0.259375" />
         <entry key="..\:/PersonalWork/AndroidStudioProjects_Ali/PixabayGalleryApp/app/src/main/res/layout/product_view.xml" value="0.14764492753623187" />
       </map>
     </option>

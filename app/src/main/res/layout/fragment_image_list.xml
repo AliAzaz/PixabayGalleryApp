@@ -17,7 +17,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/fldGrpSearchPhotos"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_40sdp"
             android:layout_margin="5dp"
             app:cardBackgroundColor="@color/purple_500"
             app:cardElevation="8dp"
@@ -28,7 +28,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputSearchPhotos"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_40sdp"
                 android:gravity="center_vertical"
                 android:padding="5dp"
                 android:theme="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
@@ -59,11 +59,11 @@
             android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/_50sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fldGrpSearchPhotos">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/fldGrpMain"
@@ -75,8 +75,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="@dimen/_2sdp"
                     android:text="@string/search_latest"
                     android:textSize="22sp"
                     android:textStyle="bold"
@@ -95,7 +94,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/populateTxt"
-                    app:msv_animateViewChanges="true"
                     app:msv_emptyView="@layout/empty_view"
                     app:msv_errorView="@layout/error_view"
                     app:msv_loadingView="@layout/loading_view"
@@ -107,6 +105,10 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/populateTxt"
                         app:spanCount="2"
                         tools:listitem="@layout/product_view" />
 

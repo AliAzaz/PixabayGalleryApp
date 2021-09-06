@@ -44,7 +44,15 @@ class ImageListFragment : FragmentBase() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+
+        /*
+        * Obtaining ViewModel
+        * */
+        viewModel = obtainViewModel(
+            activity as MainActivity,
+            ImageViewModel::class.java,
+            viewModelFactory
+        )
 
         /*
         * Get actionbar height for use in translation
@@ -59,23 +67,15 @@ class ImageListFragment : FragmentBase() {
             }) {
                 TypedValue.complexToDimensionPixelSize(this.data, resources.displayMetrics)
             }
+
+            /*
+            * Translate items on menu click
+            * */
+            actionBarHeight *= -1
+            bi.fldGrpSearchPhotos.translationY = actionBarHeight.toFloat()
+            bi.nestedScrollView.translationY = actionBarHeight.toFloat() / 2
+
         }
-
-        /*
-        * Translate items on menu click
-        * */
-        actionBarHeight *= -1
-        bi.fldGrpSearchPhotos.translationY = actionBarHeight.toFloat()
-        bi.nestedScrollView.translationY = actionBarHeight.toFloat() / 2
-
-        /*
-        * Obtaining ViewModel
-        * */
-        viewModel = obtainViewModel(
-            activity as MainActivity,
-            ImageViewModel::class.java,
-            viewModelFactory
-        )
 
         /*
         * Initiating recyclerview
@@ -89,7 +89,7 @@ class ImageListFragment : FragmentBase() {
             when (it.status) {
                 ResponseStatus.SUCCESS -> {
                     it.data?.apply {
-                        adapter.productItems = it.data.imagesInfo as ArrayList<ImagesInfo>
+                        adapter.productItems = imagesInfo as ArrayList<ImagesInfo>
                         bi.multiStateView.viewState = MultiStateView.ViewState.CONTENT
                     }
                 }
@@ -166,7 +166,7 @@ class ImageListFragment : FragmentBase() {
     * */
     @SuppressLint("ResourceType")
     private fun callingRecyclerView() {
-        adapter = GenericListAdapter(R.layout.product_view){ item, position ->
+        adapter = GenericListAdapter(R.layout.product_view) { item, position ->
             viewModel.setSelectedProduct(item)
             findNavController().navigate(ImageListFragmentDirections.actionImageListFragmentToImageDetailFragment())
         }

@@ -13,7 +13,9 @@ import com.example.pixabaygalleryapp.R
  */
 class MainActivity : AppCompatActivity() {
 
-    lateinit var navController: NavController
+    private val navController by lazy {
+        (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +29,6 @@ class MainActivity : AppCompatActivity() {
 
     fun setupNavigation() {
         // Navigation
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navController = navHostFragment.navController
         setupActionBarWithNavController(navController)
     }
 

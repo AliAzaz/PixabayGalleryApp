@@ -12,18 +12,13 @@
         tools:layout="@layout/fragment_image_list">
         <action
             android:id="@+id/action_imageListFragment_to_imageDetailFragment"
-            app:destination="@id/imageDetailFragment" />
+            app:destination="@id/imageDetailFragment"
+            app:launchSingleTop="true"/>
     </fragment>
     <fragment
         android:id="@+id/imageDetailFragment"
         android:name="com.example.pixabaygalleryapp.ui.fragment.ImageDetailFragment"
         android:label="Photo Detail"
         tools:layout="@layout/fragment_image_detail">
-<!--        <action-->
-<!--            android:id="@+id/action_imageDetailFragment_to_imageListFragment"-->
-<!--            app:destination="@id/imageListFragment"-->
-<!--            app:exitAnim="@anim/fragment_close_exit"-->
-<!--            app:popUpTo="@id/imageListFragment"-->
-<!--            app:popUpToInclusive="true" />-->
     </fragment>
 </navigation>

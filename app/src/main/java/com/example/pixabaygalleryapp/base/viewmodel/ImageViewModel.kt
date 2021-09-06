@@ -1,5 +1,6 @@
 package com.example.pixabaygalleryapp.base.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,16 +23,12 @@ class ImageViewModel @Inject constructor(
     private val imageSearchUseCase: ImageSearchUseCase
 ) : ViewModel() {
 
-    private val _imagesList: MutableLiveData<ResponseStatusCallbacks<FetchDataModel>> =
-        MutableLiveData()
-
-    val imagesResponse: MutableLiveData<ResponseStatusCallbacks<FetchDataModel>>
+    private val _imagesList = MutableLiveData<ResponseStatusCallbacks<FetchDataModel>>()
+    val imagesResponse: LiveData<ResponseStatusCallbacks<FetchDataModel>>
         get() = _imagesList
 
-    private val _selectedImages: MutableLiveData<ResponseStatusCallbacks<ImagesInfo>> =
-        MutableLiveData()
-
-    val selectedImagesResponse: MutableLiveData<ResponseStatusCallbacks<ImagesInfo>>
+    private val _selectedImages = MutableLiveData<ResponseStatusCallbacks<ImagesInfo>>()
+    val selectedImagesResponse: LiveData<ResponseStatusCallbacks<ImagesInfo>>
         get() = _selectedImages
 
     private var pagination = 1
@@ -63,10 +60,10 @@ class ImageViewModel @Inject constructor(
                             } else {
                                 updatedItems.addAll(it)
                             }
-                            _imagesList.value = ResponseStatusCallbacks.success(
+                            _imagesList.postValue(ResponseStatusCallbacks.success(
                                 data = FetchDataModel(page = pagination, imagesInfo = updatedItems),
                                 "Products received"
-                            )
+                            ))
                         } else
                             _imagesList.value = ResponseStatusCallbacks.error(
                                 data = FetchDataModel(
@@ -134,7 +131,6 @@ class ImageViewModel @Inject constructor(
         fetchSearchImagesFromRemoteServer(pagination, search)
     }
 
-
     /*
     * Query to fetch images from server
     * */
@@ -147,7 +143,6 @@ class ImageViewModel @Inject constructor(
         )
         viewModelScope.launch {
             try {
-                delay(500)
                 imageSearchUseCase(page = pagination, category = search).collect { dataset ->
                     dataset.imagesInfo.let {
                         if (it.isNotEmpty()) {
@@ -157,10 +152,10 @@ class ImageViewModel @Inject constructor(
                             } else {
                                 updatedItems.addAll(it)
                             }
-                            _imagesList.value = ResponseStatusCallbacks.success(
+                            _imagesList.postValue(ResponseStatusCallbacks.success(
                                 data = FetchDataModel(page = pagination, imagesInfo = updatedItems),
                                 "Products received"
-                            )
+                            ))
                         } else
                             _imagesList.value = ResponseStatusCallbacks.error(
                                 data = FetchDataModel(
