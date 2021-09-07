@@ -19,7 +19,7 @@ class GeneralRepository @Inject constructor(private val apiService: AuthApi) : G
         return flow {
             emit(
                 apiService.getImagesData(
-                    api_key = Keys.apiKey(),
+                    key = Keys.apiKey(),
                     page = page,
                     category = category
                 )
@@ -31,7 +31,7 @@ class GeneralRepository @Inject constructor(private val apiService: AuthApi) : G
         return flow {
             emit(
                 apiService.getSearchImageData(
-                    api_key = Keys.apiKey(),
+                    key = Keys.apiKey(),
                     page = page,
                     search = search
                 )
