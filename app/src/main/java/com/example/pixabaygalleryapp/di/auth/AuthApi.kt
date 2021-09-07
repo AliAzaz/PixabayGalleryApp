@@ -1,7 +1,10 @@
 package com.example.pixabaygalleryapp.di.auth
 
 import com.example.pixabaygalleryapp.model.ImagesResult
+import com.example.pixabaygalleryapp.utils.CONSTANTS
+import com.example.pixabaygalleryapp.utils.Keys
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -11,14 +14,16 @@ interface AuthApi {
 
     @GET(ApiRoutes.GET_IMAGES_DATA)
     suspend fun getImagesData(
-        @Query("page") page: Int = 1,
-        @Query("category") category: String = "latest"
+        @Query(CONSTANTS.API_KEY) api_key: String,
+        @Query(CONSTANTS.PAGE) page: Int = 1,
+        @Query(CONSTANTS.CATEGORY) category: String = "latest"
     ): ImagesResult
 
     @GET(ApiRoutes.GET_IMAGES_DATA)
     suspend fun getSearchImageData(
-        @Query("page") page: Int = 1,
-        @Query("q") category: String
+        @Query(CONSTANTS.API_KEY) api_key: String,
+        @Query(CONSTANTS.PAGE) page: Int = 1,
+        @Query(CONSTANTS.SEARCH) search: String
     ): ImagesResult
 
 }
