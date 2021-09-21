@@ -20,6 +20,9 @@
  - Implemented MVVM-Clean Architecture using Usecase, Repository pattern for data
  - MockK tests for several classes
 
+## Security
+
+I have implemented CMake security to secure an API key. If you don't want to secure your API key then [replace this](https://github.com/AliAzaz/PixabayGalleryApp/blob/0130838850daf26f322fb0036bf7fb8e080b6679/app/src/main/java/com/example/pixabaygalleryapp/base/repository/GeneralRepository.kt#L22) to your key or you can also direct pass the key in [ApiRoutes const](app/src/main/java/com/example/pixabaygalleryapp/di/auth/ApiRoutes.kt).
 
 ## How it built
 
