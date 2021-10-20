@@ -6,6 +6,8 @@ import android.util.TypedValue
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.NestedScrollView
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -29,7 +31,9 @@ import kotlin.coroutines.CoroutineContext
 
 class ImageListFragment : FragmentBase() {
 
-    private lateinit var viewModel: ImageViewModel
+    val viewModel: ImageViewModel by lazy {
+        ViewModelProvider(requireActivity(), viewModelFactory).get(ImageViewModel::class.java)
+    }
     private lateinit var adapter: GenericListAdapter<ImagesInfo>
     private lateinit var bi: FragmentImageListBinding
     var actionBarHeight = 0
@@ -47,15 +51,6 @@ class ImageListFragment : FragmentBase() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        /*
-        * Obtaining ViewModel
-        * */
-        viewModel = obtainViewModel(
-            activity as MainActivity,
-            ImageViewModel::class.java,
-            viewModelFactory
-        )
 
         /*
         * Get actionbar height for use in translation

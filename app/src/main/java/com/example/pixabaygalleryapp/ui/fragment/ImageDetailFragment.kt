@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.*
 import androidx.databinding.library.baseAdapters.BR
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -26,7 +27,9 @@ import kotlinx.coroutines.launch
 
 class ImageDetailFragment : FragmentBase() {
 
-    lateinit var viewModel: ImageViewModel
+    val viewModel: ImageViewModel by lazy {
+        ViewModelProvider(requireActivity(), viewModelFactory).get(ImageViewModel::class.java)
+    }
     lateinit var bi: FragmentImageDetailBinding
     var data: ImagesInfo? = null
 
@@ -54,15 +57,6 @@ class ImageDetailFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        /*
-        * Obtaining ViewModel
-        * */
-        viewModel = obtainViewModel(
-            activity as MainActivity,
-            ImageViewModel::class.java,
-            viewModelFactory
-        )
 
         /*
         * Fetch product list
