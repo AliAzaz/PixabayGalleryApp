@@ -31,12 +31,12 @@ import kotlin.coroutines.CoroutineContext
 
 class ImageListFragment : FragmentBase() {
 
-    val viewModel: ImageViewModel by lazy {
+    private val viewModel: ImageViewModel by lazy {
         ViewModelProvider(requireActivity(), viewModelFactory).get(ImageViewModel::class.java)
     }
     private lateinit var adapter: GenericListAdapter<ImagesInfo>
     private lateinit var bi: FragmentImageListBinding
-    var actionBarHeight = 0
+    private var actionBarHeight = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

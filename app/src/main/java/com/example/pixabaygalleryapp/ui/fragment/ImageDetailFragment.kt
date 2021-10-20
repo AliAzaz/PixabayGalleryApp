@@ -27,11 +27,11 @@ import kotlinx.coroutines.launch
 
 class ImageDetailFragment : FragmentBase() {
 
-    val viewModel: ImageViewModel by lazy {
+    private val viewModel: ImageViewModel by lazy {
         ViewModelProvider(requireActivity(), viewModelFactory).get(ImageViewModel::class.java)
     }
-    lateinit var bi: FragmentImageDetailBinding
-    var data: ImagesInfo? = null
+    private lateinit var bi: FragmentImageDetailBinding
+    private var data: ImagesInfo? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
