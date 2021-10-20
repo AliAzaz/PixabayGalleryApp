@@ -32,7 +32,7 @@ import kotlin.coroutines.CoroutineContext
 class ImageListFragment : FragmentBase() {
 
     private val viewModel: ImageViewModel by lazy {
-        ViewModelProvider(requireActivity(), viewModelFactory).get(ImageViewModel::class.java)
+        obtainViewModel(requireActivity(), ImageViewModel::class.java, viewModelFactory)
     }
     private lateinit var adapter: GenericListAdapter<ImagesInfo>
     private lateinit var bi: FragmentImageListBinding
