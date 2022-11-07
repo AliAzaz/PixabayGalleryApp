@@ -1,14 +1,14 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
     id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion compile_version
+    buildToolsVersion build_version
 
     buildFeatures {
         dataBinding true
@@ -16,8 +16,8 @@ android {
 
     defaultConfig {
         applicationId "com.example.pixabaygalleryapp"
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdkVersion min_version
+        targetSdkVersion target_version
         versionCode 1
         versionName "1.0"
 
@@ -37,16 +37,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    externalNativeBuild {
-        cmake {
-            path "CMakeLists.txt"
-        }
-    }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation "androidx.core:core-ktx:$corektx_version"
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "com.google.android.material:material:$material_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
@@ -84,35 +79,36 @@ dependencies {
     //Glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
-    implementation 'com.github.bumptech.glide:okhttp3-integration:4.4.0'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:4.14.2'
+    //Coil
+    implementation "io.coil-kt:coil:$coil_version"
 
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-    //MultiStateView
-    implementation 'com.github.Kennyc1012:MultiStateView:2.2.0'
-
     //SDP
     implementation "com.intuit.sdp:sdp-android:$sdp_version"
 
     //Apache for string
-    api 'org.apache.commons:commons-lang3:3.12.0'
-
-    //Flexbox
-    implementation 'com.google.android:flexbox:2.0.1'
+    implementation "org.apache.commons:commons-lang3:$api_version"
 
     //Testing
     testImplementation 'junit:junit:4.13.2'
     testImplementation "androidx.arch.core:core-testing:2.1.0"
-    testImplementation "io.mockk:mockk:1.9.3"
-    testImplementation "org.mockito:mockito-core:3.3.3"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1"
+    testImplementation 'io.mockk:mockk:1.13.2'
+    testImplementation 'org.mockito:mockito-core:4.8.1'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
     testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp_version"
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    androidTestImplementation 'org.mockito:mockito-android:2.18.3'
+    androidTestImplementation 'org.mockito:mockito-android:4.8.1'
     androidTestImplementation 'android.arch.core:core-testing:2.1.0'
-    androidTestImplementation "io.mockk:mockk-android:1.9.3"
+    androidTestImplementation 'io.mockk:mockk-android:1.13.2'
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

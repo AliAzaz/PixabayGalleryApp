@@ -6,9 +6,6 @@ import android.util.TypedValue
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.NestedScrollView
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pixabaygalleryapp.R
@@ -18,15 +15,9 @@ import com.example.pixabaygalleryapp.base.repository.ResponseStatus
 import com.example.pixabaygalleryapp.base.viewmodel.ImageViewModel
 import com.example.pixabaygalleryapp.databinding.FragmentImageListBinding
 import com.example.pixabaygalleryapp.model.ImagesInfo
-import com.example.pixabaygalleryapp.ui.MainActivity
-import com.example.pixabaygalleryapp.utils.hideKeyboard
-import com.example.pixabaygalleryapp.utils.obtainViewModel
-import com.example.pixabaygalleryapp.utils.showSnackBar
-import com.kennyc.view.MultiStateView
-import kotlinx.coroutines.*
+import com.example.pixabaygalleryapp.utils.*
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.coroutines.CoroutineContext
 
 
 class ImageListFragment : FragmentBase() {
@@ -83,24 +74,24 @@ class ImageListFragment : FragmentBase() {
         /*
         * Fetch image list
         * */
-        viewModel.imagesResponse.observe(viewLifecycleOwner, {
+        viewModel.imagesResponse.observe(viewLifecycleOwner) {
             when (it.status) {
                 ResponseStatus.SUCCESS -> {
                     it.data?.apply {
                         adapter.productItems = imagesInfo as ArrayList<ImagesInfo>
-                        bi.multiStateView.viewState = MultiStateView.ViewState.CONTENT
+                        bi.productList.visible()
                     }
                 }
                 ResponseStatus.ERROR -> {
                     it.data?.let { item ->
                         if (item.page == 1)
-                            bi.multiStateView.viewState = MultiStateView.ViewState.EMPTY
+                            bi.productList.gone()
                         else
                             bi.nestedScrollView.showSnackBar(
                                 message = it.message.toString()
                             )
                     } ?: run {
-                        bi.multiStateView.viewState = MultiStateView.ViewState.ERROR
+                        bi.productList.gone()
                         bi.nestedScrollView.showSnackBar(
                             message = "Internet not available",
                             action = "Retry"
@@ -112,8 +103,8 @@ class ImageListFragment : FragmentBase() {
                 }
                 ResponseStatus.LOADING -> {
                     it.data?.let { item ->
-                        if (item.page == 1) bi.multiStateView.viewState =
-                            MultiStateView.ViewState.LOADING
+                        if (item.page == 1)
+                            bi.productList.gone()
                         else
                             bi.nestedScrollView.showSnackBar(
                                 message = "Loading more images"
@@ -122,7 +113,7 @@ class ImageListFragment : FragmentBase() {
                 }
             }
 
-        })
+        }
 
         /*
         * Checking scrollview scroll end

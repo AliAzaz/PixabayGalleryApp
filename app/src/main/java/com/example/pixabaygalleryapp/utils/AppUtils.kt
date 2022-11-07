@@ -27,21 +27,3 @@ fun String.shortStringLength(): String {
         calStr = this.substring(0, 15).plus("...")
     return calStr
 }
-
-fun View.showSnackBar(message: String, action: String = "", actionListener: () -> Unit = {}): Snackbar {
-    val snackbar = Snackbar.make(this, message, Snackbar.LENGTH_SHORT)
-    if (action != "") {
-        snackbar.duration = Snackbar.LENGTH_INDEFINITE
-        snackbar.setAction(action) {
-            actionListener()
-            snackbar.dismiss()
-        }
-    }
-    snackbar.show()
-    return snackbar
-}
-
-fun EditText.hideKeyboard() {
-    val keyboard: InputMethodManager? = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-    keyboard?.hideSoftInputFromWindow(windowToken, 0)
-}

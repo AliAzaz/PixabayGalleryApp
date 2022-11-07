@@ -5,10 +5,7 @@ package com.example.pixabaygalleryapp.utils
  */
 
 object Keys {
-
-    init {
-        System.loadLibrary("native-lib")
+    fun apiKey(): String {
+        return "" //Place your API key here
     }
-
-    external fun apiKey(): String
 }

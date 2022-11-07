@@ -1,10 +1,13 @@
 package com.example.pixabaygalleryapp.di.modules
 
 import com.example.pixabaygalleryapp.di.auth.AuthApi
+import com.example.pixabaygalleryapp.utils.CONSTANTS
 import com.example.pixabaygalleryapp.utils.CONSTANTS.BASE_URL
+import com.example.pixabaygalleryapp.utils.Keys
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -41,13 +44,15 @@ class NetworkApiModule {
 
     @Singleton
     @Provides
-    fun buildOkHttpClient(): OkHttpClient {
+    fun buildOkHttpClient(chainKeyInterceptor: Interceptor): OkHttpClient {
         return OkHttpClient().newBuilder().also { item ->
             val log = HttpLoggingInterceptor()
             log.level = HttpLoggingInterceptor.Level.BODY
             item.addInterceptor(log)
             item.retryOnConnectionFailure(true)
-        }.build()
+        }
+            .addNetworkInterceptor(chainKeyInterceptor)
+            .build()
     }
 
 
@@ -61,6 +66,19 @@ class NetworkApiModule {
     @Singleton
     fun getCoroutineCallAdapter(): CoroutineCallAdapterFactory {
         return CoroutineCallAdapterFactory.invoke()
+    }
+
+    @Provides
+    @Singleton
+    fun getChainKeyInterceptor(): Interceptor {
+        return Interceptor { chain ->
+            chain.request().let {
+                val urlBuilder = it.url.newBuilder()
+                    .addQueryParameter(CONSTANTS.KEY, Keys.apiKey())
+                    .build()
+                chain.proceed(it.newBuilder().url(urlBuilder).build())
+            }
+        }
     }
 
 }

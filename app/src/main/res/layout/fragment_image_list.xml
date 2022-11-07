@@ -12,8 +12,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/main_background"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/main_background">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/fldGrpSearchPhotos"
@@ -28,9 +28,9 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputSearchPhotos"
-                android:background="@color/search_background"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
+                android:background="@color/search_background"
                 android:gravity="center_vertical"
                 android:padding="5dp"
                 android:theme="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
@@ -43,9 +43,9 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtSearchPhotos"
-                    android:background="@color/search_background"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/search_background"
                     android:gravity="center_vertical"
                     android:hint="@string/search_photos"
                     android:imeOptions="actionSearch"
@@ -86,36 +86,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.kennyc.view.MultiStateView
-                    android:id="@+id/multiStateView"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/productList"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:padding="@dimen/_1sdp"
+                    android:layout_gravity="center"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/populateTxt"
-                    app:msv_emptyView="@layout/empty_view"
-                    app:msv_errorView="@layout/error_view"
-                    app:msv_loadingView="@layout/loading_view"
-                    app:msv_viewState="content">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/productList"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/populateTxt"
-                        app:spanCount="2"
-                        tools:listitem="@layout/product_view" />
-
-                </com.kennyc.view.MultiStateView>
+                    app:spanCount="2"
+                    tools:listitem="@layout/product_view" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

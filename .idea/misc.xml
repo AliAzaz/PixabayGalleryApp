@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects_Ali/PixabayGalleryApp/app/src/main/res/layout/fragment_image_list.xml" value="0.3038949275362319" />
+        <entry key="..\:/AndroidStudioProjects_Ali/PixabayGalleryApp/app/src/main/res/menu/main_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidStudioProjects_Ali/PixabayGalleryApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2535" />
         <entry key="..\:/PersonalWork/AndroidStudioProjects_Ali/PixabayGalleryApp/app/src/main/res/layout/fragment_image_detail.xml" value="0.14628623188405798" />
         <entry key="..\:/PersonalWork/AndroidStudioProjects_Ali/PixabayGalleryApp/app/src/main/res/layout/fragment_image_list.xml" value="0.259375" />
         <entry key="..\:/PersonalWork/AndroidStudioProjects_Ali/PixabayGalleryApp/app/src/main/res/layout/loading_view.xml" value="0.259375" />
@@ -11,7 +14,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
