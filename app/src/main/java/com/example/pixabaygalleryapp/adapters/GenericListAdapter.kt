@@ -7,11 +7,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pixabaygalleryapp.viewholder.GenericViewHolder
+import com.example.pixabaygalleryapp.adapters.viewholder.GenericViewHolder
 import kotlinx.android.synthetic.main.product_view.view.*
 
 /**
- * @author AliAzazAlam on 4/20/2021.
+ * @author AliAzazAlam on 11/08/2022.
  * @updated AliAzazAlam on 09/03/2021
  */
 typealias OnItemClick<T> = (item: T, position: Int) -> Unit

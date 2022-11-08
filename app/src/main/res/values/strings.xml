@@ -7,4 +7,11 @@
     <string name="search">Search</string>
     <string name="night_view">Night View</string>
     <string name="share">Share</string>
+
+    <string name="INTERNET_ERROR">Can\'t reach server. Either you have no internet connection or server is down.</string>
+    <string name="UNEXPECTED_ERROR">Un Expected Error Occurred</string>
+    <string name="NO_RESULT_FOUND">No Result Found</string>
+    <string name="NO_DATA_FOUND">No Data Found</string>
+    <string name="something_went_wrong">Something went wrong, please try later</string>
+    <string name="INVALID_STATE">Invalid State</string>
 </resources>

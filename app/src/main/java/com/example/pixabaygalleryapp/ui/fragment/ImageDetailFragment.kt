@@ -3,23 +3,21 @@ package com.example.pixabaygalleryapp.ui.fragment
 import android.os.Bundle
 import android.view.*
 import androidx.databinding.library.baseAdapters.BR
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.pixabaygalleryapp.R
 import com.example.pixabaygalleryapp.base.FragmentBase
-import com.example.pixabaygalleryapp.base.repository.ResponseStatus
-import com.example.pixabaygalleryapp.base.viewmodel.ImageViewModel
+import com.example.pixabaygalleryapp.di.repository.ResponseStatus
+import com.example.pixabaygalleryapp.viewmodel.ImageViewModel
 import com.example.pixabaygalleryapp.databinding.FragmentImageDetailBinding
 import com.example.pixabaygalleryapp.model.ImagesInfo
-import com.example.pixabaygalleryapp.utils.obtainViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
 class ImageDetailFragment : FragmentBase() {
 
-    private val viewModel: ImageViewModel by lazy {
-        obtainViewModel(requireActivity(), ImageViewModel::class.java, viewModelFactory)
-    }
+    private val viewModel: ImageViewModel by activityViewModels()
     private lateinit var bi: FragmentImageDetailBinding
     private var data: ImagesInfo? = null
 
@@ -51,7 +49,7 @@ class ImageDetailFragment : FragmentBase() {
         /*
         * Fetch product list
         * */
-        viewModel.selectedImagesResponse.observe(viewLifecycleOwner, {
+        viewModel.selectedImagesResponse.observe(viewLifecycleOwner) {
             when (it.status) {
                 ResponseStatus.SUCCESS -> {
                     data = it.data
@@ -77,7 +75,7 @@ class ImageDetailFragment : FragmentBase() {
                 }
             }
 
-        })
+        }
     }
 
 }

@@ -4,9 +4,8 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.BaseObservable
 import androidx.databinding.BindingAdapter
+import coil.load
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.pixabaygalleryapp.R
 
 
@@ -22,13 +21,11 @@ object BindingAdapters : BaseObservable() {
             circleProgress.centerRadius = 40f
             circleProgress.start()
 
-            Glide.with(imageView.context)
-                .asBitmap()
-                .diskCacheStrategy(DiskCacheStrategy.DATA)
-                .load(url)
-                .placeholder(circleProgress)
-                .error(R.drawable.loading)
-                .into(imageView)
+            imageView.load(url){
+                crossfade(true)
+                placeholder(circleProgress)
+                error(R.drawable.loading)
+            }
         }
     }
 
