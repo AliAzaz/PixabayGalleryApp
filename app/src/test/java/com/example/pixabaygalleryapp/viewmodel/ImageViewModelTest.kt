@@ -6,7 +6,6 @@ import com.example.pixabaygalleryapp.MainCoroutinesRule
 import com.example.pixabaygalleryapp.MockTestUtil
 import com.example.pixabaygalleryapp.di.repository.ResponseStatusCallbacks
 import com.example.pixabaygalleryapp.viewmodel.usecases.ImageSearchUseCase
-import com.example.pixabaygalleryapp.viewmodel.usecases.ImageUseCase
 import com.example.pixabaygalleryapp.model.FetchDataModel
 import io.mockk.*
 import io.mockk.impl.annotations.MockK

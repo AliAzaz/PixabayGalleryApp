@@ -2,7 +2,7 @@ package com.example.pixabaygalleryapp.di.module
 
 import com.example.pixabaygalleryapp.di.repository.GeneralDataSource
 import com.example.pixabaygalleryapp.network.ErrorStateMapper
-import com.example.pixabaygalleryapp.viewmodel.usecases.ImageUseCase
+import com.example.pixabaygalleryapp.viewmodel.usecases.ImageSearchUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,9 +15,9 @@ class GeneralUseCaseModule {
 
     @Provides
     @Singleton
-    fun provideImageUseCase(
+    fun provideImageSearchUseCase(
         generalDataSource: GeneralDataSource,
         errorStateMapper: ErrorStateMapper
-    ) = ImageUseCase(generalDataSource, errorStateMapper)
+    ) = ImageSearchUseCase(generalDataSource, errorStateMapper)
 
 }

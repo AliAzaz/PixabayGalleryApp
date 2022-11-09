@@ -12,7 +12,7 @@ interface BaseGeneralDataSource {
     suspend fun getSearchImages(page: Int, search: String): NetworkResponseResult<ImagesResult>
 }
 
-class DefaultGeneralDataSource @Inject constructor(val backendApi: BackendApi) :
+class DefaultGeneralDataSource @Inject constructor(private val backendApi: BackendApi) :
     BaseGeneralDataSource, DefaultBaseRemoteDataSource() {
 
     override suspend fun getAllImages(
@@ -32,6 +32,5 @@ class DefaultGeneralDataSource @Inject constructor(val backendApi: BackendApi) :
             backendApi.getSearchImageData(page, search)
         }
     }
-
 
 }

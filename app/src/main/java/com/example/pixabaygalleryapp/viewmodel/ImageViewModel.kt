@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.pixabaygalleryapp.di.repository.GeneralDataSource
 import com.example.pixabaygalleryapp.di.repository.ResponseStatusCallbacks
 import com.example.pixabaygalleryapp.viewmodel.usecases.ImageSearchUseCase
-import com.example.pixabaygalleryapp.viewmodel.usecases.ImageUseCase
 import com.example.pixabaygalleryapp.model.FetchDataModel
 import com.example.pixabaygalleryapp.model.ImagesInfo
 import com.example.pixabaygalleryapp.network.Resource
@@ -20,7 +20,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class ImageViewModel @Inject constructor(
-    private val imageUseCase: ImageUseCase,
+    private val imageRepository: GeneralDataSource,
     private val imageSearchUseCase: ImageSearchUseCase
 ) : ViewModel() {
 
@@ -45,7 +45,7 @@ class ImageViewModel @Inject constructor(
     * */
     fun fetchImagesFromRemoteServer(pagination: Int) {
         viewModelScope.launch {
-            imageUseCase.invoke(page = pagination).collect {
+            imageRepository.getAllImages(page = pagination).collect {
                 when (it) {
                     is Resource.Error -> {
                         _imagesList.value =

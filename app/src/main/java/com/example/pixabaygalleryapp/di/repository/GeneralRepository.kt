@@ -2,54 +2,54 @@ package com.example.pixabaygalleryapp.di.repository
 
 import com.example.pixabaygalleryapp.model.ImagesInfo
 import com.example.pixabaygalleryapp.model.ImagesResult
+import com.example.pixabaygalleryapp.network.ErrorStateMapper
 import com.example.pixabaygalleryapp.network.NetworkResponseResult
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emptyFlow
-import kotlinx.coroutines.flow.flow
+import com.example.pixabaygalleryapp.network.Resource
+import kotlinx.coroutines.flow.*
+import org.apache.commons.lang3.StringUtils
 import javax.inject.Inject
 
 /**
  * @author AliAzazAlam on 11/08/2022.
  */
-class GeneralRepository @Inject constructor(private val defaultGeneralDataSource: BaseGeneralDataSource) :
-    GeneralDataSource {
+interface GeneralDataSource {
+    suspend fun getAllImages(
+        page: Int,
+        category: String = StringUtils.EMPTY
+    ): Flow<Resource<List<ImagesInfo>>>
 
-    var images: Flow<List<ImagesInfo>> = emptyFlow()
+    suspend fun getSearchImages(page: Int, search: String): NetworkResponseResult<ImagesResult>
+}
+
+class GeneralRepository @Inject constructor(
+    private val defaultGeneralDataSource: BaseGeneralDataSource,
+    private val errorStateMapper: ErrorStateMapper
+) : GeneralDataSource {
 
     override suspend fun getAllImages(
         page: Int,
         category: String
-    ): NetworkResponseResult<ImagesResult> {
-        val items = defaultGeneralDataSource.getAllImages(
-            page = page,
-            category = category
-        )
-
-        return items
-
-
+    ): Flow<Resource<List<ImagesInfo>>> {
+        return flow {
+            emit(Resource.Loading)
+            when (val result = defaultGeneralDataSource.getAllImages(
+                page = page,
+                category = category
+            )) {
+                is NetworkResponseResult.Success -> emit(Resource.Success(result.data.imagesInfo))
+                else -> emit(errorStateMapper.map(result))
+            }
+        }
     }
 
-    override suspend fun getSearchImages(page: Int, search: String) {
-        val items = defaultGeneralDataSource.getSearchImages(
+    override suspend fun getSearchImages(
+        page: Int,
+        search: String
+    ): NetworkResponseResult<ImagesResult> {
+        return defaultGeneralDataSource.getSearchImages(
             page = page,
             search = search
         )
-
-        when (items) {
-            NetworkResponseResult.EmptyResponse -> {
-
-            }
-            is NetworkResponseResult.Failure -> {
-
-            }
-            NetworkResponseResult.NetworkError -> {
-
-            }
-            is NetworkResponseResult.Success -> {
-                images = flow { emit(items.data.imagesInfo.toList()) }
-            }
-        }
     }
 
 }
