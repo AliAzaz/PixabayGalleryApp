@@ -11,6 +11,7 @@ import com.example.pixabaygalleryapp.di.repository.ResponseStatus
 import com.example.pixabaygalleryapp.viewmodel.ImageViewModel
 import com.example.pixabaygalleryapp.databinding.FragmentImageDetailBinding
 import com.example.pixabaygalleryapp.model.ImagesInfo
+import com.example.pixabaygalleryapp.utils.launchItemInScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -19,63 +20,18 @@ class ImageDetailFragment : FragmentBase() {
 
     private val viewModel: ImageViewModel by activityViewModels()
     private lateinit var bi: FragmentImageDetailBinding
-    private var data: ImagesInfo? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(false)
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.findItem(R.id.search_menu).isVisible = false
-        super.onPrepareOptionsMenu(menu)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         /*
-        * Initializing databinding
+        * Initializing databinding and setting viewmodel
         * */
         return FragmentImageDetailBinding.inflate(inflater, container, false).apply {
             bi = this
+            imageViewModel = viewModel
         }.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        /*
-        * Fetch product list
-        * */
-        viewModel.selectedImagesResponse.observe(viewLifecycleOwner) {
-            when (it.status) {
-                ResponseStatus.SUCCESS -> {
-                    data = it.data
-                    data?.let { item ->
-
-                        /*
-                        * Passing data to view
-                        * */
-                        bi.setVariable(BR.selImageItem, item)
-
-                        /*
-                        * Show loading and wait until view is not ready
-                        * */
-                        lifecycleScope.launch {
-                            delay(500)
-                            bi.productImg.visibility = View.VISIBLE
-                        }
-                    }
-                }
-                ResponseStatus.ERROR -> {
-                }
-                ResponseStatus.LOADING -> {
-                }
-            }
-
-        }
     }
 
 }

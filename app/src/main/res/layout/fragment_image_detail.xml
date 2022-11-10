@@ -11,6 +11,10 @@
         <variable
             name="selImageItem"
             type="com.example.pixabaygalleryapp.model.ImagesInfo" />
+
+        <variable
+            name="imageViewModel"
+            type="com.example.pixabaygalleryapp.viewmodel.IImageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,7 +34,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loadGroupImage="@{selImageItem.largeImageURL}"
+            app:loadGroupImage="@{imageViewModel.selectedImage().largeImageURL}"
             tools:src="@drawable/loading" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

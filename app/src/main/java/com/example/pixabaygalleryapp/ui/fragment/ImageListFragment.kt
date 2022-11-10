@@ -12,13 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pixabaygalleryapp.R
 import com.example.pixabaygalleryapp.adapters.GenericListAdapter
 import com.example.pixabaygalleryapp.base.FragmentBase
-import com.example.pixabaygalleryapp.di.repository.ResponseStatus
 import com.example.pixabaygalleryapp.viewmodel.ImageViewModel
 import com.example.pixabaygalleryapp.databinding.FragmentImageListBinding
 import com.example.pixabaygalleryapp.model.ImagesInfo
 import com.example.pixabaygalleryapp.utils.*
+import org.apache.commons.lang3.StringUtils
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class ImageListFragment : FragmentBase() {
@@ -27,6 +26,9 @@ class ImageListFragment : FragmentBase() {
     private lateinit var adapter: GenericListAdapter<ImagesInfo>
     private lateinit var bi: FragmentImageListBinding
     private var actionBarHeight = 0
+
+    private var pagination = 1
+    private var searchImage = StringUtils.EMPTY
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,61 +67,13 @@ class ImageListFragment : FragmentBase() {
 
         }
 
-        /*
-        * Initiating recyclerview
-        * */
-        callingRecyclerView()
+        settingRecyclerView()
 
-        /*
-        * Fetch image list
-        * */
-        viewModel.imagesResponse.observe(viewLifecycleOwner) {
-            when (it.status) {
-                ResponseStatus.SUCCESS -> {
-                    it.data?.apply {
-                        adapter.productItems = imagesInfo as ArrayList<ImagesInfo>
-                        bi.productList.visible()
-                    }
-                }
-                ResponseStatus.ERROR -> {
-                    it.data?.let { item ->
-                        if (item.page == 1)
-                            bi.productList.gone()
-                        else
-                            bi.nestedScrollView.showSnackBar(
-                                message = it.message.toString()
-                            )
-                    } ?: run {
-                        bi.productList.gone()
-                        bi.nestedScrollView.showSnackBar(
-                            message = "Internet not available",
-                            action = "Retry"
-                        ) {
-                            viewModel.retryConnection()
-                        }
+        observingItems()
 
-                    }
-                }
-                ResponseStatus.LOADING -> {
-                    it.data?.let { item ->
-                        if (item.page == 1)
-                            bi.productList.gone()
-                        else
-                            bi.nestedScrollView.showSnackBar(
-                                message = "Loading more images"
-                            )
-                    }
-                }
-            }
-
-        }
-
-        /*
-        * Checking scrollview scroll end
-        * */
         bi.nestedScrollView.setOnScrollChangeListener { v: NestedScrollView, scrollX, scrollY, oldScrollX, oldScrollY ->
             if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
-                viewModel.loadNextPagePhotos()
+                viewModel.loadNextPagePhotos(++pagination, adapter.productItems, searchImage)
             }
         }
 
@@ -128,11 +82,13 @@ class ImageListFragment : FragmentBase() {
         * */
         bi.edtSearchPhotos.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                bi.edtSearchPhotos.hideKeyboard()
                 val s = bi.edtSearchPhotos.text.toString()
+                bi.edtSearchPhotos.hideKeyboard()
                 adapter.clearProductItem()
+                pagination = 1
+                searchImage = s
                 bi.populateTxt.text = "Search: ${s.toUpperCase(Locale.ENGLISH)}"
-                viewModel.searchImagesFromRemote(s)
+                viewModel.fetchSearchImagesFromRemoteServer(pagination, arrayListOf(), s)
             }
             false
         }
@@ -141,19 +97,43 @@ class ImageListFragment : FragmentBase() {
         * Image search clear
         * */
         bi.inputSearchPhotos.setEndIconOnClickListener {
-            bi.edtSearchPhotos.setText("")
+            bi.edtSearchPhotos.setText(StringUtils.EMPTY)
             adapter.clearProductItem()
+            bi.edtSearchPhotos.hideKeyboard()
+            pagination = 1
+            searchImage = StringUtils.EMPTY
             bi.populateTxt.text = "Search: Latest"
             viewModel.fetchImagesFromRemoteServer(1)
         }
 
     }
 
+    private fun observingItems() {
+        launchItemInScope {
+            viewModel.showSuccessSnackBar().collect {
+                bi.nestedScrollView.showSnackBar(message = it)
+            }
+        }
+
+        launchItemInScope {
+            viewModel.showErrorSnackBar().collect {
+                bi.nestedScrollView.showSnackBar(message = it, action = "Retry") {
+                    viewModel.retryConnection(pagination, adapter.productItems, searchImage)
+                }
+            }
+        }
+
+        viewModel.imagesResult().observe(viewLifecycleOwner) {
+            adapter.productItems = it as ArrayList<ImagesInfo>
+            bi.productList.visible()
+        }
+    }
+
     /*
     * Initialize recyclerView with onClickListener
     * */
     @SuppressLint("ResourceType")
-    private fun callingRecyclerView() {
+    private fun settingRecyclerView() {
         adapter = GenericListAdapter(R.layout.product_view) { item, position ->
             viewModel.setSelectedProduct(item)
             findNavController().navigate(ImageListFragmentDirections.actionImageListFragmentToImageDetailFragment())

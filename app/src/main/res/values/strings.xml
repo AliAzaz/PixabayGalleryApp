@@ -8,6 +8,10 @@
     <string name="night_view">Night View</string>
     <string name="share">Share</string>
 
+    <string name="loading_images">Loading images..</string>
+    <string name="loading_more_images">Loading more images..</string>
+    <string name="no_images">Sorry no images received</string>
+
     <string name="INTERNET_ERROR">Can\'t reach server. Either you have no internet connection or server is down.</string>
     <string name="UNEXPECTED_ERROR">Un Expected Error Occurred</string>
     <string name="NO_RESULT_FOUND">No Result Found</string>

@@ -42,7 +42,7 @@ class GenericListAdapter<T> internal constructor(
         }
 
     fun clearProductItem() {
-        productItems.clear()
+        productItems = arrayListOf()
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): GenericViewHolder<T> {
