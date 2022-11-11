@@ -44,7 +44,7 @@ interface IImageViewModel {
 
     fun selectedImage(): LiveData<ImagesInfo>
 
-    fun setSelectedProduct(singleImage: ImagesInfo)
+    fun setSelectedProduct(singleImage: ImagesInfo) : Boolean
 
 }
 
@@ -129,11 +129,12 @@ class ImageViewModel @Inject constructor(
     /*
     * Send data to detail page
     * */
-    override fun setSelectedProduct(singleImage: ImagesInfo) {
+    override fun setSelectedProduct(singleImage: ImagesInfo): Boolean {
         _selectedImages.launchItemInCoroutine(
             dispatcher.dispatcherMain(),
             singleImage
         )
+        return true
     }
 
     /*

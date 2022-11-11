@@ -135,8 +135,9 @@ class ImageListFragment : FragmentBase() {
     @SuppressLint("ResourceType")
     private fun settingRecyclerView() {
         adapter = GenericListAdapter(R.layout.product_view) { item, position ->
-            viewModel.setSelectedProduct(item)
-            findNavController().navigate(ImageListFragmentDirections.actionImageListFragmentToImageDetailFragment())
+            viewModel.setSelectedProduct(item).let {
+                findNavController().navigate(ImageListFragmentDirections.actionImageListFragmentToImageDetailFragment())
+            }
         }
         adapter.stateRestorationPolicy =
             RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
