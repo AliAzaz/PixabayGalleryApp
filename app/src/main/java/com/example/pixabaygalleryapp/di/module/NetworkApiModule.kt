@@ -1,11 +1,10 @@
 package com.example.pixabaygalleryapp.di.module
 
+import com.example.pixabaygalleryapp.BuildConfig
 import com.example.pixabaygalleryapp.network.BackendApi
 import com.example.pixabaygalleryapp.network.DefaultErrorFactory
 import com.example.pixabaygalleryapp.network.IErrorFactory
 import com.example.pixabaygalleryapp.utils.CONSTANTS
-import com.example.pixabaygalleryapp.utils.CONSTANTS.BASE_URL
-import com.example.pixabaygalleryapp.utils.Keys
 import com.example.pixabaygalleryapp.utils.StringResourceManager
 import com.google.gson.Gson
 import dagger.Module
@@ -44,7 +43,7 @@ class NetworkApiModule {
         gsonConverterFactory: GsonConverterFactory
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(gsonConverterFactory)
             .build()
@@ -76,7 +75,7 @@ class NetworkApiModule {
         return Interceptor { chain ->
             chain.request().let {
                 val urlBuilder = it.url.newBuilder()
-                    .addQueryParameter(CONSTANTS.KEY, Keys.apiKey())
+                    .addQueryParameter(CONSTANTS.KEY, BuildConfig.API_KEY)
                     .build()
                 chain.proceed(it.newBuilder().url(urlBuilder).build())
             }
