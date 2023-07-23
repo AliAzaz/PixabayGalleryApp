@@ -1,0 +1,36 @@
+#Workflow name
+name: Unit tests PR build
+
+#Generating triggers: It only triggers when pull request is generated on any branch.
+on: [pull_request]
+
+#Generating jobs: Execute job when trigger is hit.
+jobs:
+ 
+ #Run test cases
+  test:
+    name: Run Unit Tests  #unit test name
+    runs-on: ubuntu-latest #unit test run on ubuntu machine
+
+    steps:
+      - uses: actions/checkout@v1 #predifined action provided by github
+
+      # Cache gradle steps to validate all test
+      - name: Cache Gradle and wrapper
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: cache-${{ runner.os }}-${{ matrix.jdk }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Grant Permission to Execute
+        run: chmod +x gradlew
+
+      - name: Run Unit tests
+        run: bash ./gradlew test --stacktrace
