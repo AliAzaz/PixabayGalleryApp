@@ -8,7 +8,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pixabaygalleryapp.viewholder.GenericViewHolder
-import kotlinx.android.synthetic.main.product_view.view.*
 
 /**
  * @author AliAzazAlam on 4/20/2021.
@@ -54,7 +53,7 @@ class GenericListAdapter<T> internal constructor(
     override fun onBindViewHolder(holder: GenericViewHolder<T>, i: Int) {
         val item = filteredProductItems[i]
         holder.bind(item)
-        holder.itemView.parentLayout.setOnClickListener {
+        holder.itemView.setOnClickListener {
             clickListener(item, i)
         }
     }

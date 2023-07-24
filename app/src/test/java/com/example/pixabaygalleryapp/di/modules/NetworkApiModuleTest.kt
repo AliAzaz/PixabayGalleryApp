@@ -1,7 +1,9 @@
 package com.example.pixabaygalleryapp.di.modules
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import okhttp3.mockwebserver.MockResponse
+import okhttp3.mockwebserver.MockWebServer
+import okhttp3.mockwebserver.RecordedRequest
 import okio.buffer
 import okio.source
 import org.hamcrest.CoreMatchers
@@ -15,9 +17,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 import java.nio.charset.StandardCharsets
-import okhttp3.mockwebserver.MockResponse
-import okhttp3.mockwebserver.MockWebServer
-import okhttp3.mockwebserver.RecordedRequest
 
 
 @RunWith(JUnit4::class)
@@ -61,7 +60,6 @@ abstract class NetworkApiModuleTest<T> {
         return Retrofit.Builder()
             .baseUrl(mockWebServer.url("/"))
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory.invoke())
             .build()
             .create(clazz)
     }

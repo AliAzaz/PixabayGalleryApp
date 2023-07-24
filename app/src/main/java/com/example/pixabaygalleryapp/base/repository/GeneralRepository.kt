@@ -2,7 +2,6 @@ package com.example.pixabaygalleryapp.base.repository
 
 import com.example.pixabaygalleryapp.di.auth.AuthApi
 import com.example.pixabaygalleryapp.model.ImagesResult
-import com.example.pixabaygalleryapp.utils.Keys
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -19,7 +18,6 @@ class GeneralRepository @Inject constructor(private val apiService: AuthApi) : G
         return flow {
             emit(
                 apiService.getImagesData(
-                    key = Keys.apiKey(),
                     page = page,
                     category = category
                 )
@@ -31,7 +29,6 @@ class GeneralRepository @Inject constructor(private val apiService: AuthApi) : G
         return flow {
             emit(
                 apiService.getSearchImageData(
-                    key = Keys.apiKey(),
                     page = page,
                     search = search
                 )
