@@ -24,6 +24,7 @@ object DependenciesVersions {
     const val gsonVersion = "2.8.9"
     const val coroutinesVersion = "1.6.0"
     const val glideVersion = "4.13.0"
+    const val chrisPhotoViewVersion = "2.1.3"
     const val recyclerview_version = "1.2.1"
     const val lifecycleVersion = "2.4.0"
     const val daggerVersion = "2.47"

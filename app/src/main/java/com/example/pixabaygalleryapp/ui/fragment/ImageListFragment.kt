@@ -6,9 +6,6 @@ import android.util.TypedValue
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.NestedScrollView
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pixabaygalleryapp.R
@@ -18,16 +15,12 @@ import com.example.pixabaygalleryapp.base.repository.ResponseStatus
 import com.example.pixabaygalleryapp.base.viewmodel.ImageViewModel
 import com.example.pixabaygalleryapp.databinding.FragmentImageListBinding
 import com.example.pixabaygalleryapp.model.ImagesInfo
-import com.example.pixabaygalleryapp.ui.MainActivity
 import com.example.pixabaygalleryapp.utils.hideKeyboard
 import com.example.pixabaygalleryapp.utils.obtainViewModel
 import com.example.pixabaygalleryapp.utils.showSnackBar
 import com.kennyc.view.MultiStateView
-import kotlinx.coroutines.*
+import org.apache.commons.lang.StringUtils
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.coroutines.CoroutineContext
-
 
 class ImageListFragment : FragmentBase() {
 
@@ -71,7 +64,7 @@ class ImageListFragment : FragmentBase() {
             * */
             actionBarHeight *= -1
             bi.fldGrpSearchPhotos.translationY = actionBarHeight.toFloat()
-            bi.nestedScrollView.translationY = actionBarHeight.toFloat() / 2
+            bi.populateTxt.translationY = actionBarHeight.toFloat() / 2
 
         }
 
@@ -83,7 +76,7 @@ class ImageListFragment : FragmentBase() {
         /*
         * Fetch image list
         * */
-        viewModel.imagesResponse.observe(viewLifecycleOwner, {
+        viewModel.imagesResponse.observe(viewLifecycleOwner) {
             when (it.status) {
                 ResponseStatus.SUCCESS -> {
                     it.data?.apply {
@@ -102,8 +95,8 @@ class ImageListFragment : FragmentBase() {
                     } ?: run {
                         bi.multiStateView.viewState = MultiStateView.ViewState.ERROR
                         bi.nestedScrollView.showSnackBar(
-                            message = "Internet not available",
-                            action = "Retry"
+                            message = getString(R.string.internet_na),
+                            action = getString(R.string.retry)
                         ) {
                             viewModel.retryConnection()
                         }
@@ -116,13 +109,13 @@ class ImageListFragment : FragmentBase() {
                             MultiStateView.ViewState.LOADING
                         else
                             bi.nestedScrollView.showSnackBar(
-                                message = "Loading more images"
+                                message = getString(R.string.loading_more_images)
                             )
                     }
                 }
             }
 
-        })
+        }
 
         /*
         * Checking scrollview scroll end
@@ -141,7 +134,7 @@ class ImageListFragment : FragmentBase() {
                 bi.edtSearchPhotos.hideKeyboard()
                 val s = bi.edtSearchPhotos.text.toString()
                 adapter.clearProductItem()
-                bi.populateTxt.text = "Search: ${s.toUpperCase(Locale.ENGLISH)}"
+                bi.populateTxt.text = getString(R.string.search, s.uppercase(Locale.ENGLISH))
                 viewModel.searchImagesFromRemote(s)
             }
             false
@@ -151,9 +144,9 @@ class ImageListFragment : FragmentBase() {
         * Image search clear
         * */
         bi.inputSearchPhotos.setEndIconOnClickListener {
-            bi.edtSearchPhotos.setText("")
+            bi.edtSearchPhotos.setText(StringUtils.EMPTY)
             adapter.clearProductItem()
-            bi.populateTxt.text = "Search: Latest"
+            bi.populateTxt.text = getString(R.string.search_latest)
             viewModel.fetchImagesFromRemoteServer(1)
         }
 
@@ -190,9 +183,9 @@ class ImageListFragment : FragmentBase() {
                     duration = 1000
                     translationY(if (bi.fldGrpSearchPhotos.translationY == actionBarHeight.toFloat()) 10f else actionBarHeight.toFloat())
                 }.start()
-                bi.nestedScrollView.animate().apply {
+                bi.populateTxt.animate().apply {
                     duration = 1000
-                    translationY(if (bi.nestedScrollView.translationY == actionBarHeight.toFloat() / 2) 10f else actionBarHeight.toFloat() / 2)
+                    translationY(if (bi.populateTxt.translationY == actionBarHeight.toFloat() / 2) 10f else actionBarHeight.toFloat() / 2)
                 }.start()
 
                 true

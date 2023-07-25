@@ -15,3 +15,6 @@
 local.properties
 /app/src/main/cpp/
 /app/src/main/cpp/lib.cpp
+/.idea/
+/buildSrc/build
+/buildSrc/.gradle

@@ -75,6 +75,7 @@ dependencies {
     implementation Lifecycle.lifecycleOwner
 
     //Images dealing
+    implementation Photos.chrisbanesPhoto
     implementation Photos.glidePhoto
     kapt Photos.glideCompilerPhoto
 

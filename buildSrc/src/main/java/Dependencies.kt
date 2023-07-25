@@ -6,6 +6,8 @@ object CoroutinesDeps {
 }
 
 object Photos {
+    const val chrisbanesPhoto =
+        "com.github.chrisbanes:PhotoView:${DependenciesVersions.chrisPhotoViewVersion}"
     const val glidePhoto = "com.github.bumptech.glide:glide:${DependenciesVersions.glideVersion}"
     const val glideCompilerPhoto =
         "com.github.bumptech.glide:compiler:${DependenciesVersions.glideVersion}"

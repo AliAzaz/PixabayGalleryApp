@@ -12,25 +12,25 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/main_background"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/main_background">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/fldGrpSearchPhotos"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/_5sdp"
             app:cardBackgroundColor="@color/purple_500"
-            app:cardElevation="8dp"
+            app:cardElevation="@dimen/_8sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputSearchPhotos"
-                android:background="@color/search_background"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
+                android:background="@color/search_background"
                 android:gravity="center_vertical"
                 android:padding="5dp"
                 android:theme="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
@@ -43,9 +43,9 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtSearchPhotos"
-                    android:background="@color/search_background"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/search_background"
                     android:gravity="center_vertical"
                     android:hint="@string/search_photos"
                     android:imeOptions="actionSearch"
@@ -58,6 +58,19 @@
 
         </com.google.android.material.card.MaterialCardView>
 
+        <TextView
+            android:id="@+id/populateTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@string/search_latest"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fldGrpSearchPhotos" />
+
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
@@ -66,33 +79,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fldGrpSearchPhotos">
+            app:layout_constraintTop_toBottomOf="@+id/populateTxt">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/fldGrpMain"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/populateTxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:text="@string/search_latest"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="wrap_content">
 
                 <com.kennyc.view.MultiStateView
                     android:id="@+id/multiStateView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:padding="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
