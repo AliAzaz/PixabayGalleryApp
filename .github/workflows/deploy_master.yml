@@ -4,7 +4,7 @@ name: Deploy apk to github artifacts
 #Generating triggers: It only triggers when push is generated on master branch.
 on:
   push:
-    branches: [ master ]
+    branches: [ cicd_distribution ]
 
 #Generating jobs: Execute job when trigger is hit.
 jobs:

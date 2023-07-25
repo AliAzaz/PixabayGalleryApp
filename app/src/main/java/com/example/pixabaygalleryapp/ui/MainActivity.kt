@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.pixabaygalleryapp.R
@@ -30,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         setupNavigation()
     }
 
-    fun setupNavigation() {
+    private fun setupNavigation() {
         // Navigation
         setupActionBarWithNavController(navController)
     }

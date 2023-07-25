@@ -1,6 +1,6 @@
 # PixabayGalleryApp
 
-[![API](https://img.shields.io/badge/API-21%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=15) [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
+[![API](https://img.shields.io/badge/API-23%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=15) [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
 ✨ Image gallery app that consumed Pixabay API ✨
 
@@ -9,20 +9,26 @@
 ## Features
 
 - Search photos by querying it
-- Populate latest photos
+- Populate the latest photos
 - Gallery support pagination
 - Dark/Light Mode
 
-
 ## Architecture
 
- - Using Modern Android Development practices.
- - Implemented MVVM-Clean Architecture using Usecase, Repository pattern for data, and Dagger for injection.
- - MockK tests available for several classes.
+- Using Modern Android Development practices.
+- Implemented MVVM-Clean Architecture using Usecase, Repository pattern for data, and Dagger for
+  injection.
+- MockK tests are available for several classes.
 
 ## Security
 
-I have implemented CMake security to secure an API key. If you don't want to secure your API key then [replace this](https://github.com/AliAzaz/PixabayGalleryApp/blob/0130838850daf26f322fb0036bf7fb8e080b6679/app/src/main/java/com/example/pixabaygalleryapp/base/repository/GeneralRepository.kt#L22) to your key or you can also direct pass the key in [ApiRoutes const](app/src/main/java/com/example/pixabaygalleryapp/di/auth/ApiRoutes.kt).
+I have implemented CMake security to secure an API
+key. [Please take a look at my article to learn how to implement it](https://medium.com/kotlin-academy/how-to-secure-secrets-in-android-android-security-01-a345e97c82be)
+.
+
+Otherwise, you can direct pass the key
+in [Network Module](app/src/main/java/com/example/pixabaygalleryapp/di/modules/NetworkApiModule.kt#L68)
+.
 
 ## How it built
 
@@ -31,7 +37,7 @@ I have implemented CMake security to secure an API key. If you don't want to sec
 - Retrofit
 - Coroutine
 - MVVM --- **M** [Repository Pattern] **V** [Live Data & Data Binding] **VM** [ViewModel]
-- Dagger2
+- DI -> Dagger2
 - Binding Adapters
 - Material Components
 - MockK Test

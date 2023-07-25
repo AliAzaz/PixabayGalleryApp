@@ -1,10 +1,12 @@
 package com.example.pixabaygalleryapp.di.modules
 
 import com.example.pixabaygalleryapp.di.auth.AuthApi
+import com.example.pixabaygalleryapp.utils.CONSTANTS
 import com.example.pixabaygalleryapp.utils.CONSTANTS.BASE_URL
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.example.pixabaygalleryapp.utils.Keys
 import dagger.Module
 import dagger.Provides
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -28,26 +30,26 @@ class NetworkApiModule {
     @Provides
     fun buildRetrofitClient(
         okHttpClient: OkHttpClient,
-        coroutineCallAdapterFactory: CoroutineCallAdapterFactory,
         gsonConverterFactory: GsonConverterFactory
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(gsonConverterFactory)
-            .addCallAdapterFactory(coroutineCallAdapterFactory)
             .build()
     }
 
     @Singleton
     @Provides
-    fun buildOkHttpClient(): OkHttpClient {
+    fun buildOkHttpClient(chainKeyInterceptor: Interceptor): OkHttpClient {
         return OkHttpClient().newBuilder().also { item ->
             val log = HttpLoggingInterceptor()
             log.level = HttpLoggingInterceptor.Level.BODY
             item.addInterceptor(log)
             item.retryOnConnectionFailure(true)
-        }.build()
+        }
+            .addNetworkInterceptor(chainKeyInterceptor)
+            .build()
     }
 
 
@@ -57,10 +59,18 @@ class NetworkApiModule {
         return GsonConverterFactory.create()
     }
 
+
     @Provides
     @Singleton
-    fun getCoroutineCallAdapter(): CoroutineCallAdapterFactory {
-        return CoroutineCallAdapterFactory.invoke()
+    fun getChainKeyInterceptor(): Interceptor {
+        return Interceptor { chain ->
+            chain.request().let {
+                val urlBuilder = it.url.newBuilder()
+                    .addQueryParameter(CONSTANTS.KEY, Keys.apiKey())
+                    .build()
+                chain.proceed(it.newBuilder().url(urlBuilder).build())
+            }
+        }
     }
 
 }

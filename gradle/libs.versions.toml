@@ -1,0 +1,16 @@
+[versions]
+gradleplugin = "7.2.2"
+kotlin = "1.6.10"
+androidMaven = "2.0"
+jfrogBintray = "1.7.3"
+safeArgs = "2.5.3"
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "gradleplugin" }
+android-library = { id = "com.android.library", version.ref = "gradleplugin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+android-maven = { id = "com.github.dcendents.android-maven", version.ref = "androidMaven" }
+jfrog-bintray = { id = "com.jfrog.bintray", version.ref = "jfrogBintray" }
+safe-args = { id = "androidx.navigation.safeargs", version.ref = "safeArgs" }

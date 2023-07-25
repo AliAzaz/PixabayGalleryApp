@@ -16,9 +16,9 @@
         android:id="@+id/parentLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_160sdp"
-        android:layout_marginStart="@dimen/_3sdp"
+        android:layout_marginStart="@dimen/_4sdp"
         android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginEnd="@dimen/_3sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
         android:elevation="@dimen/_1sdp"
         app:cardCornerRadius="@dimen/_5sdp"
         app:cardElevation="@dimen/_1sdp">

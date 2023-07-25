@@ -9,10 +9,8 @@ import com.example.pixabaygalleryapp.base.viewmodel.usecases.ImageSearchUseCase
 import com.example.pixabaygalleryapp.base.viewmodel.usecases.ImageUseCase
 import com.example.pixabaygalleryapp.model.FetchDataModel
 import com.example.pixabaygalleryapp.model.ImagesInfo
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import org.apache.commons.lang3.StringUtils
+import org.apache.commons.lang.StringUtils
 import javax.inject.Inject
 
 /**
