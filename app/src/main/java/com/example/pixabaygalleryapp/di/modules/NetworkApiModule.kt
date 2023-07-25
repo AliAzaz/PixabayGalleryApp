@@ -1,6 +1,7 @@
 package com.example.pixabaygalleryapp.di.modules
 
 import com.example.pixabaygalleryapp.di.auth.AuthApi
+import com.example.pixabaygalleryapp.utils.CONSTANTS
 import com.example.pixabaygalleryapp.utils.CONSTANTS.BASE_URL
 import com.example.pixabaygalleryapp.utils.Keys
 import dagger.Module
@@ -65,7 +66,7 @@ class NetworkApiModule {
         return Interceptor { chain ->
             chain.request().let {
                 val urlBuilder = it.url.newBuilder()
-                    .addQueryParameter("key", Keys.apiKey())
+                    .addQueryParameter(CONSTANTS.KEY, Keys.apiKey())
                     .build()
                 chain.proceed(it.newBuilder().url(urlBuilder).build())
             }
