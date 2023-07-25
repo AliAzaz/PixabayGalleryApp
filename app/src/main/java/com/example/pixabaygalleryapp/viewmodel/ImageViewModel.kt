@@ -4,11 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.pixabaygalleryapp.R
 import com.example.pixabaygalleryapp.di.repository.ResponseStatusCallbacks
 import com.example.pixabaygalleryapp.model.FetchDataModel
 import com.example.pixabaygalleryapp.model.ImagesInfo
 import com.example.pixabaygalleryapp.usecases.ImageSearchUseCase
 import com.example.pixabaygalleryapp.usecases.ImageUseCase
+import com.example.pixabaygalleryapp.utils.DefaultStringResourceManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.apache.commons.lang.StringUtils
@@ -20,7 +22,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ImageViewModel @Inject constructor(
     private val imageUseCase: ImageUseCase,
-    private val imageSearchUseCase: ImageSearchUseCase
+    private val imageSearchUseCase: ImageSearchUseCase,
+    private val stringResourceManager: DefaultStringResourceManager
 ) : ViewModel() {
 
     private val _imagesList = MutableLiveData<ResponseStatusCallbacks<FetchDataModel>>()
@@ -60,17 +63,25 @@ class ImageViewModel @Inject constructor(
                             } else {
                                 updatedItems.addAll(it)
                             }
-                            _imagesList.postValue(ResponseStatusCallbacks.success(
-                                data = FetchDataModel(page = pagination, imagesInfo = updatedItems),
-                                "Products received"
-                            ))
+                            _imagesList.postValue(
+                                ResponseStatusCallbacks.success(
+                                    data = FetchDataModel(
+                                        page = pagination,
+                                        imagesInfo = updatedItems
+                                    ),
+                                    stringResourceManager.getString(R.string.items_received)
+                                )
+                            )
                         } else
                             _imagesList.value = ResponseStatusCallbacks.error(
                                 data = FetchDataModel(
                                     page = pagination,
                                     imagesInfo = null
                                 ),
-                                if (pagination == 1) "Sorry no images received" else "Sorry no more images available"
+                                if (pagination == 1)
+                                    stringResourceManager.getString(R.string.no_images_received)
+                                else
+                                    stringResourceManager.getString(R.string.more_images_na)
                             )
                     }
 
@@ -90,7 +101,7 @@ class ImageViewModel @Inject constructor(
             try {
                 _selectedImages.value = ResponseStatusCallbacks.success(
                     data = singleImages,
-                    "Image received"
+                    stringResourceManager.getString(R.string.items_received)
                 )
             } catch (e: Exception) {
                 _imagesList.value = ResponseStatusCallbacks.error(null, e.message.toString())
@@ -152,17 +163,25 @@ class ImageViewModel @Inject constructor(
                             } else {
                                 updatedItems.addAll(it)
                             }
-                            _imagesList.postValue(ResponseStatusCallbacks.success(
-                                data = FetchDataModel(page = pagination, imagesInfo = updatedItems),
-                                "Products received"
-                            ))
+                            _imagesList.postValue(
+                                ResponseStatusCallbacks.success(
+                                    data = FetchDataModel(
+                                        page = pagination,
+                                        imagesInfo = updatedItems
+                                    ),
+                                    stringResourceManager.getString(R.string.items_received)
+                                )
+                            )
                         } else
                             _imagesList.value = ResponseStatusCallbacks.error(
                                 data = FetchDataModel(
                                     page = pagination,
                                     imagesInfo = null
                                 ),
-                                if (pagination == 1) "Sorry no images received" else "Sorry no more images available"
+                                if (pagination == 1)
+                                    stringResourceManager.getString(R.string.no_images_received)
+                                else
+                                    stringResourceManager.getString(R.string.more_images_na)
                             )
                     }
 

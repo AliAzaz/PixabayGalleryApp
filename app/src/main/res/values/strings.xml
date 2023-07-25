@@ -9,4 +9,7 @@
     <string name="internet_na">Internet not available</string>
     <string name="retry">Retry</string>
     <string name="loading_more_images">Loading more images</string>
+    <string name="items_received">Items received</string>
+    <string name="no_images_received">Sorry no images received</string>
+    <string name="more_images_na">Sorry no more images available</string>
 </resources>
