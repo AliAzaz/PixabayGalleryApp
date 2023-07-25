@@ -1,4 +1,4 @@
-package com.example.pixabaygalleryapp.base.repository
+package com.example.pixabaygalleryapp.di.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.pixabaygalleryapp.MainCoroutinesRule

@@ -1,7 +1,7 @@
-package com.example.pixabaygalleryapp.base.viewmodel.usecases
+package com.example.pixabaygalleryapp.usecases
 
 import com.example.pixabaygalleryapp.MockTestUtil
-import com.example.pixabaygalleryapp.base.repository.GeneralRepository
+import com.example.pixabaygalleryapp.di.repository.GeneralRepository
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers
+import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert
-import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -20,7 +20,7 @@ import org.junit.runners.JUnit4
  * @author AliAzazAlam on 4/21/2021.
  */
 @RunWith(JUnit4::class)
-class ImageSearchUseCaseTest {
+class ImageUseCaseTest {
 
     @MockK
     private lateinit var repository: GeneralRepository
@@ -31,36 +31,25 @@ class ImageSearchUseCaseTest {
     }
 
     @Test
-    fun `test getSearchImages gives list of images`() = runBlocking {
-        //Given
-        val usecase = ImageSearchUseCase(repository)
+    fun `test getAllImages gives list of images`() = runBlocking {
+        // Given
+        val usecase = ImageUseCase(repository)
         val mockImages = MockTestUtil.createImages()
 
-        //When
-        coEvery { repository.getSearchImages(any(),any()) }
+        // When
+        coEvery { repository.getAllImages(1,"") }
             .returns(flowOf(mockImages))
 
-        //Invoke
+        // Invoke
         val imageListFlow = usecase(1,"")
 
-        //Then
+        // Then
         MatcherAssert.assertThat(imageListFlow, CoreMatchers.notNullValue())
 
         val imageListDataState = imageListFlow.first()
         MatcherAssert.assertThat(imageListDataState, CoreMatchers.notNullValue())
 
         MatcherAssert.assertThat(imageListDataState, CoreMatchers.notNullValue())
-        MatcherAssert.assertThat(
-            imageListDataState.imagesInfo.size,
-            CoreMatchers.`is`(mockImages.imagesInfo.size)
-        )
-
-
-    }
-
-
-
-    @After
-    fun tearDown() {
+        MatcherAssert.assertThat(imageListDataState.imagesInfo.size, `is`(mockImages.imagesInfo.size))
     }
 }

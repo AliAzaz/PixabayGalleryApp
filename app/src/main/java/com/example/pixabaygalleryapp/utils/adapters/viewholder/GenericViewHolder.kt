@@ -1,9 +1,9 @@
-package com.example.pixabaygalleryapp.viewholder
+package com.example.pixabaygalleryapp.utils.adapters.viewholder
 
 import androidx.databinding.ViewDataBinding
+import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import androidx.databinding.library.baseAdapters.BR
 
 /**
  * @author AliAzazAlam on 4/20/2021.

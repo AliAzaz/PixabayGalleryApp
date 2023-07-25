@@ -1,15 +1,13 @@
-package com.example.pixabaygalleryapp.base.viewmodel
+package com.example.pixabaygalleryapp.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.pixabaygalleryapp.MainCoroutinesRule
 import com.example.pixabaygalleryapp.MockTestUtil
-import com.example.pixabaygalleryapp.base.repository.GeneralRepository
-import com.example.pixabaygalleryapp.base.repository.ResponseStatusCallbacks
-import com.example.pixabaygalleryapp.base.viewmodel.usecases.ImageSearchUseCase
-import com.example.pixabaygalleryapp.base.viewmodel.usecases.ImageUseCase
+import com.example.pixabaygalleryapp.di.repository.ResponseStatusCallbacks
 import com.example.pixabaygalleryapp.model.FetchDataModel
-import com.example.pixabaygalleryapp.model.ImagesInfo
+import com.example.pixabaygalleryapp.usecases.ImageSearchUseCase
+import com.example.pixabaygalleryapp.usecases.ImageUseCase
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -17,7 +15,6 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
-
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

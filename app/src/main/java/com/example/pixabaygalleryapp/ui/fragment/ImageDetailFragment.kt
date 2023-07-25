@@ -6,19 +6,18 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.library.baseAdapters.BR
+import androidx.fragment.app.activityViewModels
 import com.example.pixabaygalleryapp.R
 import com.example.pixabaygalleryapp.base.FragmentBase
-import com.example.pixabaygalleryapp.base.repository.ResponseStatus
-import com.example.pixabaygalleryapp.base.viewmodel.ImageViewModel
 import com.example.pixabaygalleryapp.databinding.FragmentImageDetailBinding
-import com.example.pixabaygalleryapp.utils.obtainViewModel
+import com.example.pixabaygalleryapp.di.repository.ResponseStatus
+import com.example.pixabaygalleryapp.viewmodel.ImageViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ImageDetailFragment : FragmentBase() {
 
-    private val viewModel: ImageViewModel by lazy {
-        obtainViewModel(requireActivity(), ImageViewModel::class.java, viewModelFactory)
-    }
+    private val viewModel: ImageViewModel by activityViewModels()
     private lateinit var bi: FragmentImageDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

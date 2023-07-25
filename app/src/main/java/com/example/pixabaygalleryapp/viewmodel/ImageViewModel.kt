@@ -1,14 +1,15 @@
-package com.example.pixabaygalleryapp.base.viewmodel
+package com.example.pixabaygalleryapp.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pixabaygalleryapp.base.repository.ResponseStatusCallbacks
-import com.example.pixabaygalleryapp.base.viewmodel.usecases.ImageSearchUseCase
-import com.example.pixabaygalleryapp.base.viewmodel.usecases.ImageUseCase
+import com.example.pixabaygalleryapp.di.repository.ResponseStatusCallbacks
 import com.example.pixabaygalleryapp.model.FetchDataModel
 import com.example.pixabaygalleryapp.model.ImagesInfo
+import com.example.pixabaygalleryapp.usecases.ImageSearchUseCase
+import com.example.pixabaygalleryapp.usecases.ImageUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.apache.commons.lang.StringUtils
 import javax.inject.Inject
@@ -16,6 +17,7 @@ import javax.inject.Inject
 /**
  * @author AliAzazAlam on 4/20/2021.
  */
+@HiltViewModel
 class ImageViewModel @Inject constructor(
     private val imageUseCase: ImageUseCase,
     private val imageSearchUseCase: ImageSearchUseCase

@@ -4,6 +4,7 @@ kotlin = "1.6.10"
 androidMaven = "2.0"
 jfrogBintray = "1.7.3"
 safeArgs = "2.5.3"
+hilt = "2.44"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradleplugin" }
@@ -14,3 +15,4 @@ kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref =
 android-maven = { id = "com.github.dcendents.android-maven", version.ref = "androidMaven" }
 jfrog-bintray = { id = "com.jfrog.bintray", version.ref = "jfrogBintray" }
 safe-args = { id = "androidx.navigation.safeargs", version.ref = "safeArgs" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
