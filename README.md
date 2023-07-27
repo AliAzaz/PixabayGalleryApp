@@ -16,7 +16,7 @@
 ## Architecture
 
 - Using Modern Android Development practices.
-- Implemented MVVM-Clean Architecture using Usecase, Repository pattern for data, and Dagger for
+- Implemented MVVM-Clean Architecture using Usecase, Repository pattern for data, and Hilt for
   injection.
 - MockK tests are available for several classes.
 
@@ -37,7 +37,8 @@ in [Network Module](app/src/main/java/com/example/pixabaygalleryapp/di/modules/N
 - Retrofit
 - Coroutine
 - MVVM --- **M** [Repository Pattern] **V** [Live Data & Data Binding] **VM** [ViewModel]
-- DI -> Dagger2
+- DI -> Hilt & Dagger2 implementation in
+  branch *[dagger2-implementation](https://github.com/AliAzaz/PixabayGalleryApp/tree/dagger2-implementation)*
 - Binding Adapters
 - Material Components
 - MockK Test

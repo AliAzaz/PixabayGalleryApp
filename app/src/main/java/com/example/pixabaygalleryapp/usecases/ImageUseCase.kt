@@ -1,6 +1,6 @@
-package com.example.pixabaygalleryapp.base.viewmodel.usecases
+package com.example.pixabaygalleryapp.usecases
 
-import com.example.pixabaygalleryapp.base.repository.GeneralDataSource
+import com.example.pixabaygalleryapp.di.repository.GeneralDataSource
 import javax.inject.Inject
 
 /**

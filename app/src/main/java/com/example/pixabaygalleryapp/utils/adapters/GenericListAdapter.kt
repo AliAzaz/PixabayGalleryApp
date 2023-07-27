@@ -1,4 +1,4 @@
-package com.example.pixabaygalleryapp.adapters
+package com.example.pixabaygalleryapp.utils.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pixabaygalleryapp.viewholder.GenericViewHolder
+import com.example.pixabaygalleryapp.utils.adapters.viewholder.GenericViewHolder
 
 /**
  * @author AliAzazAlam on 4/20/2021.

@@ -1,13 +1,16 @@
 package com.example.pixabaygalleryapp.di.modules
 
-import com.example.pixabaygalleryapp.base.repository.GeneralDataSource
-import com.example.pixabaygalleryapp.base.repository.GeneralRepository
 import com.example.pixabaygalleryapp.di.auth.AuthApi
+import com.example.pixabaygalleryapp.di.repository.GeneralDataSource
+import com.example.pixabaygalleryapp.di.repository.GeneralRepository
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 class GeneralRepositoryModule {
 
     @Singleton

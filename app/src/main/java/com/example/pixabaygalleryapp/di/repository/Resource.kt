@@ -1,4 +1,4 @@
-package com.example.pixabaygalleryapp.base.repository
+package com.example.pixabaygalleryapp.di.repository
 
 /**
  * @author AliAzazAlam on 4/20/2021.

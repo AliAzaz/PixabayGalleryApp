@@ -6,27 +6,27 @@ import android.util.TypedValue
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.NestedScrollView
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pixabaygalleryapp.R
-import com.example.pixabaygalleryapp.adapters.GenericListAdapter
 import com.example.pixabaygalleryapp.base.FragmentBase
-import com.example.pixabaygalleryapp.base.repository.ResponseStatus
-import com.example.pixabaygalleryapp.base.viewmodel.ImageViewModel
 import com.example.pixabaygalleryapp.databinding.FragmentImageListBinding
+import com.example.pixabaygalleryapp.di.repository.ResponseStatus
 import com.example.pixabaygalleryapp.model.ImagesInfo
+import com.example.pixabaygalleryapp.utils.adapters.GenericListAdapter
 import com.example.pixabaygalleryapp.utils.hideKeyboard
-import com.example.pixabaygalleryapp.utils.obtainViewModel
 import com.example.pixabaygalleryapp.utils.showSnackBar
+import com.example.pixabaygalleryapp.viewmodel.ImageViewModel
 import com.kennyc.view.MultiStateView
+import dagger.hilt.android.AndroidEntryPoint
 import org.apache.commons.lang.StringUtils
 import java.util.*
 
+@AndroidEntryPoint
 class ImageListFragment : FragmentBase() {
 
-    private val viewModel: ImageViewModel by lazy {
-        obtainViewModel(requireActivity(), ImageViewModel::class.java, viewModelFactory)
-    }
+    private val viewModel: ImageViewModel by activityViewModels()
     private lateinit var adapter: GenericListAdapter<ImagesInfo>
     private lateinit var bi: FragmentImageListBinding
     private var actionBarHeight = 0

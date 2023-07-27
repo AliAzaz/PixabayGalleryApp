@@ -6,6 +6,8 @@ import com.example.pixabaygalleryapp.utils.CONSTANTS.BASE_URL
 import com.example.pixabaygalleryapp.utils.Keys
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,6 +20,7 @@ import javax.inject.Singleton
  * @author AliAzazAlam on 4/20/2021.
  */
 @Module
+@InstallIn(SingletonComponent::class)
 class NetworkApiModule {
 
     @Singleton

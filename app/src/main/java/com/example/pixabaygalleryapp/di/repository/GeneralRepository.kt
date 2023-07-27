@@ -1,4 +1,4 @@
-package com.example.pixabaygalleryapp.base.repository
+package com.example.pixabaygalleryapp.di.repository
 
 import com.example.pixabaygalleryapp.di.auth.AuthApi
 import com.example.pixabaygalleryapp.model.ImagesResult

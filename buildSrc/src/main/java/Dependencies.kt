@@ -93,15 +93,9 @@ object AndroidTesting {
 }
 
 object DI {
-    const val dagger = "com.google.dagger:dagger:${DependenciesVersions.daggerVersion}"
-    const val daggerAndroid =
-        "com.google.dagger:dagger-android:${DependenciesVersions.daggerVersion}"
-    const val daggerAndroidSupport =
-        "com.google.dagger:dagger-android-support:${DependenciesVersions.daggerVersion}"
-    const val daggerCompilerKapt =
-        "com.google.dagger:dagger-compiler:${DependenciesVersions.daggerVersion}"
-    const val daggerAndroidKapt =
-        "com.google.dagger:dagger-android-processor:${DependenciesVersions.daggerVersion}"
+    const val hilt = "com.google.dagger:hilt-android:${DependenciesVersions.hiltVersion}"
+    const val hiltKapt =
+        "com.google.dagger:hilt-android-compiler:${DependenciesVersions.hiltVersion}"
 }
 
 object Navigation {

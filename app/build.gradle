@@ -4,6 +4,7 @@ plugins {
     alias libs.plugins.kotlin.kapt
     alias libs.plugins.kotlin.parcelize
     alias libs.plugins.safe.args
+    alias libs.plugins.hilt
 }
 
 android {
@@ -95,11 +96,8 @@ dependencies {
     implementation Recycler.recycler
 
     //Dagger
-    implementation DI.dagger
-    implementation DI.daggerAndroid
-    implementation DI.daggerAndroidSupport
-    kapt DI.daggerCompilerKapt
-    kapt DI.daggerAndroidKapt
+    implementation DI.hilt
+    kapt DI.hiltKapt
 
     //MultiStateView
     implementation OtherDeps.multiStateView

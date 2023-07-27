@@ -9,10 +9,13 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.pixabaygalleryapp.R
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * @author AliAzazAlam on 4/20/2021.
  */
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val navController by lazy {

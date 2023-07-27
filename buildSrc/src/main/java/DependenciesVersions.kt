@@ -27,7 +27,7 @@ object DependenciesVersions {
     const val chrisPhotoViewVersion = "2.1.3"
     const val recyclerview_version = "1.2.1"
     const val lifecycleVersion = "2.4.0"
-    const val daggerVersion = "2.47"
+    const val hiltVersion = "2.44"
     const val navigationVersion = "2.5.3"
     const val flexBox = "2.0.1"
 }
