@@ -32,7 +32,6 @@
                 android:layout_height="@dimen/_40sdp"
                 android:background="@color/search_background"
                 android:gravity="center_vertical"
-                android:padding="5dp"
                 android:theme="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 app:boxBackgroundMode="none"
                 app:boxCollapsedPaddingTop="0dp"
@@ -44,15 +43,16 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtSearchPhotos"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:maxLength="80"
                     android:background="@color/search_background"
                     android:gravity="center_vertical"
                     android:hint="@string/search_photos"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:lines="1"
-                    android:maxLength="80"
-                    android:padding="10dp" />
+                    android:padding="@dimen/_5sdp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +94,6 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/populateTxt"
                     app:msv_emptyView="@layout/empty_view"
                     app:msv_errorView="@layout/error_view"
                     app:msv_loadingView="@layout/loading_view"
