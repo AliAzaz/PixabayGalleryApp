@@ -30,7 +30,7 @@ jobs:
 
       - name: Get archivesBaseName
         id: apk-name
-        run: echo "APK_NAME=app--${{env.APP_TYPE}}.apk" >> $GITHUB_OUTPUT
+        run: echo "APK_NAME=app-${{env.APP_TYPE}}.apk" >> $GITHUB_OUTPUT
 
   build-apk:
     needs: app-utils-creation

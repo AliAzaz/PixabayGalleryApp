@@ -17,9 +17,13 @@ jobs:
       - name: Grant Permission to Execute
         run: chmod +x gradlew
 
+      - name: Upload API Key to gradle properties 🔥
+        run: sed -i "s|PIXABAY_KEY|${{secrets.PIXABAY_KEY}}|g" ./gradle.properties
+
 
   #Generate an apk
   build-apk:
+    needs: app-utils-creation
     runs-on: ubuntu-latest
 
     steps:

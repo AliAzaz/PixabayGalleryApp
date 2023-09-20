@@ -22,6 +22,8 @@ android {
         versionCode ConfigurationData.versionCode
         versionName ConfigurationData.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "PIXABAY_KEY", PIXABAY_KEY)
     }
 
     signingConfigs {
