@@ -1,0 +1,61 @@
+name: Manual App apk generation
+run-name: Deploy by @${{ github.actor }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      app-type:
+        description: 'APK environment'
+        required: true
+        default: 'debug'
+        type: choice
+        options:
+          - release
+          - debug
+
+jobs:
+  app-utils-creation:
+    runs-on: ubuntu-latest
+    outputs:
+      APK_NAME: ${{steps.apk-name.outputs.APK_NAME}}
+      APP_TYPE: ${{steps.env-type.outputs.APP_TYPE}}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set input environment type to environment variable 🔥
+        id: env-type
+        run: |
+          echo "APP_TYPE=${{ github.event.inputs.app-type }}" >> $GITHUB_ENV
+
+      - name: Get archivesBaseName
+        id: apk-name
+        run: echo "APK_NAME=app-${{env.APP_TYPE}}.apk" >> $GITHUB_OUTPUT
+
+  build-apk:
+    needs: app-utils-creation
+    runs-on: ubuntu-latest
+    env:
+      APK_NAME: ${{needs.app-utils-creation.outputs.APK_NAME}}
+      APP_TYPE: ${{needs.app-utils-creation.outputs.APP_TYPE}}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Grant Permission to Execute
+        run: chmod +x gradlew
+
+      - name: set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Build - APK 🔥
+        run: bash ./gradlew assemble${{env.APP_TYPE}}
+
+      - name: Uploading APK to Github Artifacts 🚀
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{env.APK_NAME}}
+          path: app/build/outputs/apk/debug/${{env.APK_NAME}}
+

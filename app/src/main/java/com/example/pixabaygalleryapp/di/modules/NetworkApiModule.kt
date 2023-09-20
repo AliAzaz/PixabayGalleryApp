@@ -1,5 +1,6 @@
 package com.example.pixabaygalleryapp.di.modules
 
+import com.example.pixabaygalleryapp.BuildConfig
 import com.example.pixabaygalleryapp.di.auth.AuthApi
 import com.example.pixabaygalleryapp.utils.CONSTANTS
 import com.example.pixabaygalleryapp.utils.CONSTANTS.BASE_URL
@@ -69,7 +70,7 @@ class NetworkApiModule {
         return Interceptor { chain ->
             chain.request().let {
                 val urlBuilder = it.url.newBuilder()
-                    .addQueryParameter(CONSTANTS.KEY, Keys.apiKey())
+                    .addQueryParameter(CONSTANTS.KEY, Keys.apiKey() ?: BuildConfig.PIXABAY_KEY)
                     .build()
                 chain.proceed(it.newBuilder().url(urlBuilder).build())
             }

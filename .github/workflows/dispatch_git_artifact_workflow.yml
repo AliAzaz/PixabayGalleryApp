@@ -1,0 +1,46 @@
+#Workflow name
+name: Dispatch app to Github Artifacts
+run-name: Deploy by @${{ github.actor }}
+
+#Generating triggers: It only triggers when push is generated on master branch.
+on:
+  push:
+    branches: [ master ]
+
+#Generating jobs: Execute job when trigger is hit.
+jobs:
+  app-utils-creation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Grant Permission to Execute
+        run: chmod +x gradlew
+
+      - name: Upload API Key to gradle properties 🔥
+        run: sed -i "s|PIXABAY_KEY|${{secrets.PIXABAY_KEY}}|g" ./gradle.properties
+
+
+  #Generate an apk
+  build-apk:
+    needs: app-utils-creation
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Build debuging APK 🔥
+        run: bash ./gradlew assembleDebug
+
+      - name: Uploading APK to Github Artifacts 🚀
+        uses: actions/upload-artifact@v3
+        with:
+          name: $APK_NAME
+          path: app/build/outputs/apk/debug/$APK_NAME
+        env:
+          APK_NAME: "app-debug.apk"

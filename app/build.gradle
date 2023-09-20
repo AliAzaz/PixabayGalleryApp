@@ -8,8 +8,8 @@ plugins {
 }
 
 android {
-    compileSdkVersion ConfigurationData.compileSdkVersion
-    buildToolsVersion ConfigurationData.buildToolsVersion
+    compileSdk ConfigurationData.compileSdkVersion
+    buildToolsVersion = ConfigurationData.buildToolsVersion
 
     dataBinding {
         enabled = true
@@ -22,16 +22,32 @@ android {
         versionCode ConfigurationData.versionCode
         versionName ConfigurationData.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "PIXABAY_KEY", PIXABAY_KEY)
+    }
+
+    signingConfigs {
+        debug {
+
+        }
+        release {
+            keyAlias 'pixabay'
+            keyPassword '123456'
+            storeFile file('pixabay-app.jks')
+            storePassword '123456'
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         debug {
             minifyEnabled false
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
