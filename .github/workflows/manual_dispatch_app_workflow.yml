@@ -2,7 +2,7 @@ name: Manual App apk generation
 run-name: Deploy by @${{ github.actor }}
 
 on:
-  dispatch_workflow:
+  workflow_dispatch:
     inputs:
       app-type:
         description: 'APK environment'
