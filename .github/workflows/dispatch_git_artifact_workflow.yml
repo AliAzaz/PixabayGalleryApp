@@ -34,6 +34,22 @@ jobs:
         with:
           java-version: 11
 
+      - name: Install Android NDK and SDK
+        run: |
+          # Install Android NDK
+          wget -q https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip
+          unzip -q android-ndk-r21e-linux-x86_64.zip -d /usr/local/lib/android
+          rm android-ndk-r21e-linux-x86_64.zip
+          
+          # Install Android SDK (adjust the URL as needed)
+          wget -q https://dl.google.com/android/repository/commandlinetools-linux-7302050_latest.zip
+          unzip -q commandlinetools-linux-7302050_latest.zip -d /usr/local/lib/android
+          rm commandlinetools-linux-7302050_latest.zip
+          
+          # Add Android SDK tools/bin to PATH
+          echo 'export PATH=$PATH:/usr/local/lib/android/cmdline-tools/latest/bin' >> $HOME/.bashrc
+        shell: bash
+
       - name: Build APK with CMake
         run: |
           mkdir -p build
