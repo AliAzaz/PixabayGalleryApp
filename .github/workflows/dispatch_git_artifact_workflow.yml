@@ -37,6 +37,14 @@ jobs:
       - name: Grant Permission to Execute
         run: chmod +x gradlew
 
+      - name: Cache Android Dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            /usr/local/lib/android/sdk
+            /usr/local/lib/android/ndk
+          key: android-dependencies-${{ runner.os }}
+
       - name: Install Android NDK and SDK
         run: |
           # Install Android NDK
