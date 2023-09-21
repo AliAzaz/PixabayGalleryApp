@@ -43,9 +43,14 @@ find_library( # Sets the name of the path variable.
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
 
-target_link_libraries( # Specifies the target library.
-        native-lib
+if (DEFINED ENV{EXCLUDE_LIB_CPP} AND "$ENV{EXCLUDE_LIB_CPP}" STREQUAL "true")
+    message(STATUS "Excluding lib.cpp from the build")
+else ()
+    # Include lib.cpp in the build
+    target_link_libraries( # Specifies the target library.
+            native-lib
 
-        # Links the target library to the log library
-        # included in the NDK.
-        ${log-lib})
+            # Links the target library to the log library
+            # included in the NDK.
+            ${log-lib})
+endif ()
