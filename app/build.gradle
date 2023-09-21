@@ -57,9 +57,13 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    externalNativeBuild {
-        cmake {
-            path "CMakeLists.txt"
+    android {
+        if (project.hasProperty('useCMake') && project.property('useCMake').toString() == 'true') {
+            externalNativeBuild {
+                cmake {
+                    path "CMakeLists.txt"
+                }
+            }
         }
     }
 }
