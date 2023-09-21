@@ -20,10 +20,6 @@ jobs:
       - name: Upload API Key to gradle properties 🔥
         run: sed -i "s|PIXABAY_KEY|${{secrets.PIXABAY_KEY}}|g" ./gradle.properties
 
-      - name: Set useCMake property to false
-        run: echo "useCMake=false" >> gradle.properties
-
-
   #Generate an apk
   build-apk:
     needs: app-utils-creation
@@ -36,6 +32,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+
+      - name: Set EXCLUDE_LIB_CPP environment variable
+        run: echo "EXCLUDE_LIB_CPP=true" >> $GITHUB_ENV
 
       - name: Build debuging APK 🔥
         run: bash ./gradlew assembleDebug

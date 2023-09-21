@@ -11,14 +11,20 @@ project(PixabayGalleryApp)
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 
-add_library( # Sets the name of the library.
-        native-lib
+# Check if the EXCLUDE_LIB_CPP environment variable is set to true
+if (DEFINED ENV{EXCLUDE_LIB_CPP} AND "$ENV{EXCLUDE_LIB_CPP}" STREQUAL "true")
+    message(STATUS "Excluding lib.cpp from the build")
+else ()
+    # Include lib.cpp in the build
+    add_library( # Sets the name of the library.
+            native-lib
 
-        # Sets the library as a shared library.
-        SHARED
+            # Sets the library as a shared library.
+            SHARED
 
-        # Provides a relative path to your source file(s).
-        src/main/cpp/lib.cpp)
+            # Provides a relative path to your source file(s).
+            src/main/cpp/lib.cpp)
+endif ()
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
