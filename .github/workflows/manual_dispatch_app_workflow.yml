@@ -45,6 +45,9 @@ jobs:
       - name: Grant Permission to Execute
         run: chmod +x gradlew
 
+      - name: Upload API Key to gradle properties 🔥
+        run: sed -i "s|PIXABAY_KEY|${{secrets.PIXABAY_KEY}}|g" ./gradle.properties
+
       - name: set up JDK
         uses: actions/setup-java@v1
         with:
