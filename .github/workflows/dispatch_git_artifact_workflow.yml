@@ -33,9 +33,6 @@ jobs:
         with:
           java-version: 11
 
-      - name: Set EXCLUDE_LIB_CPP environment variable
-        run: echo "EXCLUDE_LIB_CPP=true" >> $GITHUB_ENV
-
       - name: Build debugging APK 🔥
         run: bash ./gradlew assembleDebug
         if: success()

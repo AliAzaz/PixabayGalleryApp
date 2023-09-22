@@ -70,7 +70,10 @@ class NetworkApiModule {
         return Interceptor { chain ->
             chain.request().let {
                 val urlBuilder = it.url.newBuilder()
-                    .addQueryParameter(CONSTANTS.KEY, Keys.apiKey() ?: BuildConfig.PIXABAY_KEY)
+                    .addQueryParameter(
+                        CONSTANTS.KEY,
+                        Keys.apiKey().ifEmpty { BuildConfig.PIXABAY_KEY }
+                    )
                     .build()
                 chain.proceed(it.newBuilder().url(urlBuilder).build())
             }

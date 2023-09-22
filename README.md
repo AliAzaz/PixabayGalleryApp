@@ -23,12 +23,10 @@
 ## Security
 
 I have implemented CMake security to secure an API
-key. [Please take a look at my article to learn how to implement it](https://medium.com/kotlin-academy/how-to-secure-secrets-in-android-android-security-01-a345e97c82be)
-.
+key. [Please take a look at my article to learn how to implement it](https://medium.com/kotlin-academy/how-to-secure-secrets-in-android-android-security-01-a345e97c82be).
 
-Otherwise, you can direct pass the key
-in [Network Module](app/src/main/java/com/example/pixabaygalleryapp/di/modules/NetworkApiModule.kt#L68)
-.
+Therefore, you can paste the key here in [cpp/lib.cpp](app/src/main/cpp/lib.cpp#L7) file and add it
+in .gitignore file so, it will be secure.
 
 ## How it built
 
