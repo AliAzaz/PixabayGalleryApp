@@ -36,14 +36,14 @@ jobs:
       - name: Set EXCLUDE_LIB_CPP environment variable
         run: echo "EXCLUDE_LIB_CPP=true" >> $GITHUB_ENV
 
-      - name: Build debuging APK 🔥
+      - name: Build debugging APK 🔥
         run: bash ./gradlew assembleDebug
         if: success()
 
       - name: Uploading APK to Github Artifacts 🚀
         uses: actions/upload-artifact@v3
         with:
-          name: app-debug.apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: ${{ env.APK_NAME }}
+          path: app/build/outputs/apk/debug/${{ env.APK_NAME }}
         env:
           APK_NAME: "app-debug.apk"

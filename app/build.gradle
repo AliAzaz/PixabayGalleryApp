@@ -40,12 +40,16 @@ android {
 
     buildTypes {
         release {
+            // to remove unused resources. This will reduce APK size.
+            shrinkResources true
+            //To obfuscate the code and to remove unused code. This will improve code security and will reduce APK size.
             minifyEnabled true
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         debug {
+            shrinkResources false // to remove unused resources. This will reduce APK size.
             minifyEnabled false
             signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -60,11 +64,9 @@ android {
     /*
     * Cmake checking
     * */
-    if (project.hasProperty('useCMake') && project.property('useCMake').toString() == 'true') {
-        externalNativeBuild {
-            cmake {
-                path "CMakeLists.txt"
-            }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
         }
     }
 }
