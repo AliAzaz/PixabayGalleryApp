@@ -22,9 +22,7 @@ android {
         versionCode ConfigurationData.versionCode
         versionName ConfigurationData.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
 
-    buildTypes.configureEach {
         buildConfigField "String", "PIXABAY_KEY", "\"${PIXABAY_KEY}\""
     }
 

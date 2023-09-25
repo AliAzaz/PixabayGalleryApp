@@ -25,7 +25,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Upload API Key to gradle properties 🔥
-        run: sed -i "s|PIXABAY_KEY|${{secrets.PIXABAY_KEY}}|g" ./gradle.properties
+        run: sed -i "s|REPLACEABLE_PIXABAY_KEY|${{secrets.PIXABAY_KEY}}|g" ./gradle.properties
 
       - name: Build debugging APK 🔥
         run: bash ./gradlew assembleDebug
