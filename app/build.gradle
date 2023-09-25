@@ -23,7 +23,7 @@ android {
         versionName ConfigurationData.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "PIXABAY_KEY", "\"${PIXABAY_KEY}\""
+        buildConfigField "String", "PIXABAY_KEY", PIXABAY_KEY
     }
 
     signingConfigs {
