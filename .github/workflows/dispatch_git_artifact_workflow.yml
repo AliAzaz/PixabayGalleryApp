@@ -9,20 +9,8 @@ on:
 
 #Generating jobs: Execute job when trigger is hit.
 jobs:
-  app-utils-creation:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Grant Permission to Execute
-        run: chmod +x gradlew
-
-      - name: Upload API Key to gradle properties 🔥
-        run: sed -i "s|PIXABAY_KEY|${{secrets.PIXABAY_KEY}}|g" ./gradle.properties
-
   #Generate an apk
   build-apk:
-    needs: app-utils-creation
     runs-on: ubuntu-latest
 
     steps:
@@ -32,6 +20,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+
+      - name: Grant Permission to Execute
+        run: chmod +x gradlew
+
+      - name: Upload API Key to gradle properties 🔥
+        run: sed -i "s|PIXABAY_KEY|${{secrets.PIXABAY_KEY}}|g" ./gradle.properties
 
       - name: Build debugging APK 🔥
         run: bash ./gradlew assembleDebug
